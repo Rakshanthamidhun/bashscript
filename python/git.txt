@@ -1,0 +1,30 @@
+ git init 
+ git config --global user.email "rakshanthamidhun@gmail.com"
+ git config --global user.name "rakshanthamidhun" 
+ git add .
+ git commit -m "created new file" -a
+ git push
+ git config --list
+ git push origin master
+ git remote add origin https://github.com/Rakshanthamidhun/bashscript
+ history
+
+rmageshx@rmageshx-mobl MINGW64 ~/git_practice/first (master)
+$ git remote -v
+origin  https://github.com/Rakshanthamidhun/bashscript (fetch)
+origin  https://github.com/Rakshanthamidhun/bashscript (push)
+
+rmageshx@rmageshx-mobl MINGW64 ~/git_practice/first (master)
+$ git push origin master
+info: please complete authentication in your browser...
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 234 bytes | 78.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Rakshanthamidhun/bashscript
+ * [new branch]      master -> master
+
+rmageshx@rmageshx-mobl MINGW64 ~/git_practice/first (master)
+$ git push origin master
+Everything up-to-date
+

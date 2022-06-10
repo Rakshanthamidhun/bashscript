@@ -1,0 +1,378 @@
+#armstron number (1234= 1*4 + 2*4 + 3*4 + 4*4 if equal to 1234)
+for i in range(144,200):  #i: 134 to 199
+    num=i  #num=134
+    result=0
+    n=len(str(i))  #n: 3
+    while i!=0:  #i: 134
+        digit=i%10  #digit: 4
+        result=result+digit**n  #result: 0+ 4**3= 64
+        i=i//10   #i: 13 (this is i value for next iteration)
+    if num == result:  #after completing while loop if executes
+        print(num)
+#o/p : 153	 
+
+#factorial using in-built func (4!= 4*3*2*1)
+import math
+num=int(input("Enter value:"))
+print(math.factorial(num))
+result=math.factorial(num)
+print("factorial of",num,"is equal to",result) 
+'''
+Enter value:4
+24 
+factorial of 4 is equal to 24 '''
+
+#factorial using for loop (fact of 0 & 1=1)
+num=int(input("Enter value:"))
+result=1
+for i in range(num,0,-1):
+	result=result*i
+print("factorial of",num,"is equal to",result)
+'''
+Enter value:5
+factorial of 5 is equal to 120 '''
+
+#fibonaaci series 
+num=int(input("Enter no of terms:"))
+first=0
+second=1
+for i in range(num):
+	print(first)
+	temp=first
+	first=second
+	second=temp+second
+'''
+Enter no of terms:7
+0
+1
+1
+2
+3
+5
+8 '''
+
+#prime no in interval
+lower=int(input("enter lower interval:"))
+upper=int(input("enter upper interval:"))
+for num in range (lower,upper+1):  #num: 1 to 20 
+    if num>1:  #since 1 is prime no  
+	for i in range(2,num):  #i: 2 to 19
+	    if(num%i)==0:  #5%2, 5%3, 5%4 !=0 hence goes to else when num=5 
+		break
+        else:   #after completing if 
+            print(num)  #after checking for 5 it goes to num=6 in main for loop
+'''
+enter lower interval:1
+enter upper interval:20
+2
+3
+5
+7
+11
+13
+17
+19 ''' 
+
+#perfect number (6 : sum of divisors of 6 excluding 6--> 1+2+3=6) 
+num=int(input("enter no:"))
+result=0
+for i in range(1,num):  #i: 1 to 5
+    if (num%i)==0:  #6%1=0, 6%2=0, 6%3=0, 6%4=2, 6%5=1
+	result+=i  #i=1+2+3
+if (result==num): 
+    print(num,"is perfect number")
+else:
+    print(num,"not a perfect number")
+'''
+enter no:6
+6 is perfect number '''
+
+#prime number or not (divirsor other than 1 and itself, 1 is not prime no)   
+num=int(input("enter a number:"))
+if num>1:
+     for i in range(2,num):  #i: 2 to 20
+          if(num%i)==0:  #2%2, 3%2,
+    	     print(num,"is not a prime no")	
+             break
+     else:
+          print(num,"is a prime no")
+else:
+     print(num,"is not a prime number")
+'''
+enter a number:19
+19 is a prime no '''
+
+#perfect number in interval
+lower=int(input("enter lower interval:"))
+upper=int(input("enter upper interval:"))
+for num in range(lower,upper+1):  #num:3 to 10
+   result=0
+   for i in range(1,num):  #i: 1 to 3 , next iter( i:1 to 4)
+       if (num%i)==0:  #3%1=0, 3%2=1, next iter(4%1,4%2=0,4%3=1 goes to else)
+          result+=i  #(result=1!=3), next iter(result=1+2 !=4)
+   if (result==num):
+        print(num,"is perfect number")
+   else:
+        print(num,"not a perfect number") #after this main for loop num=4
+'''
+enter lower interval:3
+enter upper interval:10
+3 not a perfect number
+4 not a perfect number
+5 not a perfect number
+6 is perfect number
+7 not a perfect number
+8 not a perfect number
+9 not a perfect number
+10 not a perfect number '''
+		
+#palindrome (121, madam(get num as just i/p)
+num=int(input("enter any number:"))
+string=str(num) #int doesn't support slicing
+rev_string=string[::-1]
+print("reversed string",rev_string)
+if (string==rev_string):
+     print("it is palindrome")
+else:
+     print("Not a palindrome")
+'''
+enter any number:232
+reversed string: 232
+it is palindrome ''' 
+
+#swapping with third variable
+a=int(input("a:"))
+b=int(input("b:"))
+temp=a
+a=b
+b=temp
+print("after swapping")
+print("value of a:",a)
+print("value of b:",b)
+'''
+a:5
+b:10
+after swapping
+value of a: 10
+value of b: 5 '''
+
+#swapping without third variable
+a=int(input("a:"))
+b=int(input("b:"))
+a=a+b
+b=a-b
+a=a-b
+print("after swapping")
+print("value of a:",a)
+print("value of b:",b)
+'''
+a:5
+b:4
+after swapping
+value of a: 4
+value of b: 5  '''
+
+#sum of digits of positive no (// truncated division: int part of quotient)
+num=int(input("enter wish number:"))  #num=134
+result=0
+for i in range(len(str(num))):   #i: 0 to 2
+        digit=num%10  #digit: 134%10= 4 
+        result=result+digit  #result: 0+4= 4
+        num=num//10   #num: 134//10 = 13 (this is num value for next iteration)
+print("sum is:",result)
+'''
+enter wish number:123
+sum is: 6 '''
+
+num=int(input("enter wish number:"))  #num=134
+result=0
+while num>0:
+        digit=num%10  #digit: 134%10= 4
+        result=result+digit  #result: 0+4= 4
+        num=num//10   #num: 134//10 = 13 (this is num value for next iteration)
+print("sum is:",result)
+
+#reverse a string using fo loop
+def reverse(string):
+    reversed_string=""
+    for i in string:  #i : r,a,k,s,h
+	reversed_string=i+reversed_string  #r,ar,kar,skar,hskar
+    print("reversed string is:",reversed_string) 
+
+string=input("enter the string:")
+print("entered string",string)
+reverse(string)
+'''
+enter the string:raksh
+entered string raksh
+reversed string is: hskar  '''
+
+#palindromic prime no
+num=int(input("enter any number:"))
+reverse=int(str(num)[::-1])
+print("reversed string",reverse)
+if num==reverse:
+   if num>1:
+     for i in range(2,num):  
+          if(num%i)==0:  
+             print(num,"is not a prime no,but palindrome")
+             break
+     else:
+          print(num,"is a palindromic prime no")
+else:
+   if num>1:
+     for i in range(2,num):  
+          if(num%i)==0:  
+             print(num,"is not a prime & palindrome")
+             break
+     else:
+          print(num,"is a prime no but not palindrome")
+'''
+enter any number:23
+reversed string 32
+23 is a prime no but not palindrome
+
+enter any number:101
+reversed string 101
+101 is a palindromic prime no 
+
+enter any number:141
+reversed string 141
+141 is not a prime no,but palindrome
+
+enter any number:42
+reversed string 24
+42 is not a prime & palindrome '''
+
+#pralindromic prime in interval
+lower=int(input("enter lower number:"))
+upper=int(input("enter upper number:"))
+for num in range(lower,upper+1):
+	reverse=int(str(num)[::-1])
+	if num==reverse:
+  	   if num>1:
+		for i in range(2,num):
+		   if (num%i==0):
+             		break
+     		else:
+          	    print(num,"is a palindromic prime no")
+'''
+enter lower number:1
+enter upper number:10
+2 is a palindromic prime no
+3 is a palindromic prime no
+5 is a palindromic prime no
+7 is a palindromic prime no '''
+
+#count vowels in sequence
+sentence=input("enter sentence:")
+string=sentence.lower()
+print(string)
+count=0
+list=['a','e','i','o',"u"]
+for i in string:
+    if i in list:
+	count+=count
+print("no of vowels in sentence is:",count)
+'''
+enter sentence:He is a Good Guy
+he is a good guy
+no of vowels in sentence is: 6 '''
+
+#index of element 
+list=["hello",3,1,8,7,1]
+print(list.index(8))
+#o/p : 3
+
+list=["hello",3,1,1,1,7,1]
+print(list.index(1))
+#o/p :2
+
+list1=["hello",3,1,1,1,7,1]
+list2=[i for i in range(len(list1))]
+print(list2)
+#o/p : [0, 1, 2, 3, 4, 5, 6] prints index of all elements
+
+list1=["hello",3,1,1,1,7,1]
+list2=[i for i in range(len(list1)) if list1[i]==1]
+print(list2)
+#o/p : [2, 3, 4, 6] prints index of element 1 alone
+
+#
+print(1010)
+print(int(0b1010))
+print(int("1010",2))
+print(int("0b1010",2))
+print(int(0o100))
+print(int("100",8))
+print(int(0x8E))
+print(int("8E",16))
+print(bin(10))
+print(oct(142))
+print(hex(100))
+#o/p: 10
+10
+10
+64
+64
+142
+142
+0b1010
+0o216
+0x64 '''
+
+#range(returns list of no,fast) and xrange(returns generator obj, doesn't store in memory hence less space)
+print(range(5))
+print(range(1,5))
+print(range(1,10,2))
+print(range(-10,-1,-1)) #step +, start &stop should be - else empty list
+print(range(60,20)) #start value should be less than stop
+print(xrange(1,6)) #use loop to avoid it
+print("for loop in xrange")
+for i in xrange(1,6):
+   print i
+
+import sys
+print sys.getsizeof(range(100))
+print sys.getsizeof(xrange(100))
+print(type(range))
+print(type(xrange))
+'''
+[0, 1, 2, 3, 4]
+[1, 2, 3, 4]
+[1, 3, 5, 7, 9]
+[]
+[]
+xrange(1, 6)
+for loop in xrange
+1
+2
+3
+4
+5
+872
+40
+<type 'builtin_function_or_method'>
+<type 'type'> '''
+
+#append(add single element in end of lsit) 
+#extend(adding all iterables at end of list)
+a=[1,2,3]
+print(a)
+a.append("hello")
+print(a)
+a.extend("rak,sh!10")
+print(a)
+'''
+[1, 2, 3]
+[1, 2, 3, 'hello']
+[1, 2, 3, 'hello', 'r', 'a', 'k', ',', 's', 'h', '!', '1', '0'] '''
+
+#raw input (takes user i/p & treats as string)& input func
+print(type(raw_input(10))) #takes all input as string supports only for python 2
+print(input(10)) #takes as integer in python 2
+print(input(10)) #behaves same like raw_input of py2 in py 3
+
+
+
+

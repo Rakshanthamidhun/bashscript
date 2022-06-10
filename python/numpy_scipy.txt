@@ -1,0 +1,624 @@
+#numpy(numerical python wirtten in C and python) & scipy(scientific python) : python library
+#scientific lang : matlab,fortran,algol,apl
+"""scientific operations:
+array,matrices,integration,differential eqn,statistics etc"""
+#python doesn't have these as built-in except few math operations dealting with var not with array or matrices
+#pip : to intall these lib we need it(while installing python check pip)
+#install numpy first and then scipy (pip install numpy,scipy,matplotlib,pandas)
+""" similarities bw list & array:
+Storing data,mutable,sliced,can be indexed
+diff  bw list & array:
+list: diff datatype, array: same datatype"""
+
+import numpy
+a=numpy.array([1,4,6,2])
+print("given array:",a)
+a=a/2 #we can't do this operation in list
+print("divided array:",a)
+
+#numpy array adv over list: consumes less memory,fast
+
+'''
+given array: [1 4 6 2]
+divided array: [0.5 2.  3.  1. ]   '''
+
+#in pyton array is not built-in 
+#from aray module(python array many operations are not available here), using numpy lib(numpy array)
+#nd array : n-dimentional array
+#we can create array from list or tuple
+import numpy as np
+#print(help(np.array))
+print("dimentional array:")
+a=np.array([[1,2],[3,5],[7,8]])
+print(a)
+a=np.array([[1,2],[3,5],[7,8]],dtype=complex)
+print("complex format :")
+print(a)
+a=np.array((1,2,3))
+print("tuple to array:")
+print(a)
+a=np.array((1,2,3),ndmin=3) 
+print("display according to min dimentions:")
+print(a)
+a=np.array((1,2,3.0))
+print("upcasting of datatype:")
+print(a)
+
+'''
+dimentional array:
+[[1 2]
+ [3 5]
+ [7 8]]
+complex format :
+[[1.+0.j 2.+0.j]
+ [3.+0.j 5.+0.j]
+ [7.+0.j 8.+0.j]]
+tuple to array:
+[1 2 3]
+display according to min dimentions:
+[[[1 2 3]]]
+upcasting of datatype:
+[1. 2. 3.] '''
+
+#creates array of evenly spaced array (arange)
+import numpy as np
+#print(help(np.arange))
+a=np.arange(1,10)  #start,stop
+print(a)
+a=np.arange(3.0) #stop
+print(a)
+a=np.arange(1,10,2)  #start,stop,step
+print(a)
+a=np.arange(20,dtype="complex")  #stop,datatype
+print(a)
+
+'''
+[1 2 3 4 5 6 7 8 9]
+[0. 1. 2.]
+[1 3 5 7 9]
+[ 0.+0.j  1.+0.j  2.+0.j  3.+0.j  4.+0.j  5.+0.j  6.+0.j  7.+0.j  8.+0.j
+  9.+0.j 10.+0.j 11.+0.j 12.+0.j 13.+0.j 14.+0.j 15.+0.j 16.+0.j 17.+0.j
+ 18.+0.j 19.+0.j]   ''' 
+
+#creates array filled with zero (zeros)
+#default dtype is float
+import numpy as np
+#print(help(np.zeros))
+a=np.zeros(5)  
+print(a)
+a=np.zeros(3,dtype="int") 
+print(a)
+a=np.zeros((2,3))  #row,col in tuple
+print(a)
+a=np.zeros([3,4])  #row,col in list
+print(a)
+
+'''
+[0. 0. 0. 0. 0.]
+[0 0 0]
+[[0. 0. 0.]
+ [0. 0. 0.]]
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]   '''
+
+#creates array filled with ones (ones)
+#default dtype is float
+import numpy as np
+#print(help(np.ones))
+a=np.ones(4)  
+print(a)
+a=np.ones(3,dtype="int") 
+print(a)
+a=np.ones((2,3))  #row,col in tuple
+print(a)
+a=np.ones([3,4])  #row,col in list
+print(a)
+
+#similar to ones and zeros we have empty array(random values are generated)
+#default dtype is float
+import numpy as np
+#print(help(np.empty))
+a=np.empty(4)  
+print(a)
+a=np.empty(3,dtype="int") 
+print(a)
+a=np.empty((2,3))  #row,col in tuple
+print(a)
+a=np.empty([3,4])  #row,col in list
+print(a)
+
+'''
+[4.66785346e-310 6.93543370e-310 7.90505033e-323 7.90505033e-323]
+[    140374740794008     140374740794008 3199090019642253356]
+[[6.93543370e-310 6.93543370e-310 6.93543352e-310]
+ [6.93543345e-310 6.93543350e-310 6.93543350e-310]]
+[[4.66785364e-310 6.93543370e-310 1.72219190e+097 1.67521847e+243]
+ [3.57885813e+246 2.32111980e-152 1.27991129e-152 2.31415123e-152]
+ [5.46647994e+241 9.38181692e-154 2.46563506e-154 5.61306697e+188]]    ''' 
+
+#linspace(linear space) function(similar to arange)
+#creates array filled with evenly spaced values
+import numpy as np
+#print(help(np.linspace))
+a=np.linspace(2,3,num=5)   #5 is no of values not steps here includes end
+print(a)
+a=np.linspace(2,3,num=5,retstep=True)  #returns step between value (retstep)
+print(a)
+a=np.linspace(2,3,num=5,endpoint=False) #to exclude end 
+print(a)
+a=np.linspace(2,3,num=5,dtype=int)
+print(a)
+#if we don't give num value it gives 50 values by default incl end
+
+'''
+[2.   2.25 2.5  2.75 3.  ]
+(array([2.  , 2.25, 2.5 , 2.75, 3.  ]), 0.25)
+[2.  2.2 2.4 2.6 2.8]
+[2 2 2 2 3]     '''
+
+#create array with random numbers
+#rand,randn,ranf,randint
+import numpy as np
+#print(help(np.random.rand))
+a=np.random.rand(5)   
+print(a)
+a=np.random.rand(4,3)  
+print(a)
+
+'''
+[0.06508822 0.10355818 0.43099561 0.66881911 0.20531687]
+[[0.31811451 0.90160844 0.28916798]
+ [0.72905546 0.7641823  0.78618744]
+ [0.52761982 0.27109705 0.59725683]
+ [0.05973952 0.13582608 0.55450586]]   '''
+
+#create array with random numbers
+#rand,randn,ranf,randint
+import numpy as np
+#print(help(np.random.randn))
+a=np.random.randn(5)   
+print(a)
+a=np.random.randn(4,3)  
+print(a)
+
+'''
+[-0.17153411  0.98168699  1.7322996   0.57029515  0.22555154]
+[[-1.1412704   0.94636502  1.13277515]
+ [-1.54063186 -0.63272287  0.05629624]
+ [ 0.23678431  0.47769664 -0.93302288]
+ [ 1.04689312 -0.21658364 -1.57607647]]   '''
+
+#create array with random numbers
+#rand,randn,ranf,randint
+import numpy as np
+#print(help(np.random.ranf))
+a=np.random.ranf(5)   
+print(a)
+a=np.random.ranf()   
+print(a)
+
+'''
+[0.33124337 0.3804663  0.41334682 0.23045958 0.64897052]
+0.03410325412306081   '''
+
+#create array with random numbers
+#rand,randn,ranf,randint
+import numpy as np
+#print(help(np.random.randint))
+a=np.random.randint(5)   
+print(a)
+a=np.random.randint(3,size=7)   
+print(a)
+a=np.random.randint(6,size=(2,4))   
+print(a)
+
+'''
+4
+[0 1 0 1 1 1 2]
+[[3 2 0 0]
+ [4 5 5 2]]   '''
+
+#attributes of array
+#dimension attribute: ndim
+import numpy as np
+a=np.array([[1,2,3],[2,5,2]])
+print("dimesnsion:",a.ndim)
+#shape
+a=np.array([[1,2,3,4],[2,5,2,1],[4,1,2,2]])
+print("elements of ndimensional array:",a)
+print("shape is:",a.shape) #row,col
+a=np.array([1,2,3,4])
+print("single dimension:",a.shape)
+b=np.zeros((1,2,3))  #3 dim array
+print("single dimension of zeros:",b)
+print("shape is:",b.shape)
+#size (no of elements present in array)
+print("size of b:",b.size,"and size of a:",a.size)  #1*2*3
+print("datatype of b:",b.dtype,"\ndatatype of a:",a.dtype)
+#item size (size of each item in array bytes)
+#float64 =64/8 = 8 bytes
+print("itemsize of b:",b.itemsize,"\nitemsize of a:",a.itemsize)
+
+'''
+dimesnsion: 2
+elements of ndimensional array: [[1 2 3 4]
+ [2 5 2 1]
+ [4 1 2 2]]
+shape is: (3, 4)
+single dimension: (4,)
+single dimension of zeros: [[[0. 0. 0.]
+  [0. 0. 0.]]]
+shape is: (1, 2, 3)
+size of b: 6 and size of a: 4
+datatype of b: float64 
+datatype of a: int64
+itemsize of b: 8 
+itemsize of a: 8   '''
+
+#attributes of array
+#dimension attribute: ndim
+import numpy as np
+a=np.zeros(5,dtype=np.int8)
+print("a:",a)
+print("dimension:",a.ndim)
+print("shape:",a.shape)
+print("datatype:",a.dtype)
+#we can use datatype as function
+x=np.float32(1)
+print(x.dtype)
+print(x)
+#datatype can be reffered by character unicode
+a=np.array([1,2,3,4],dtype='f')
+print(a)
+#astype to change datatype
+c=np.zeros(3)
+print(c)
+print(a.astype(complex))
+#we can use datatype as a function
+print(np.int16(a))
+
+'''
+a: [0 0 0 0 0]
+dimension: 1
+shape: (5,)
+datatype: int8
+float32
+1.0
+[1. 2. 3. 4.]
+[0. 0. 0.]
+[1.+0.j 2.+0.j 3.+0.j 4.+0.j]
+[1 2 3 4]   '''
+
+#indexing operation array
+import numpy as np
+a=np.array([1,2,5,4])
+print("element at index 2,0,-1 is:",a[2],",",a[0],"and",a[-1])
+b=np.array([[1,2,3],[5,4,9]])
+print("b:",b)
+print(b[-2,-1])
+print(b[1])
+c=[[[1,2,3,4],[5,6,7,8],[9,10,11]],[[12,13,14],[15,16,17],[18,19,20]]]
+d=np.array(c)
+print(d)
+print(d[0][1][3])
+print(d[1][0][1])
+print(d[-2][-3][-3])
+print(d[0])
+print(d[1][0])
+
+'''
+main.py:9: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
+  d=np.array([[[1,2,3,4],[5,6,7,8],[9,10,11]],[[12,13,14],[15,16,17],[18,19,20]]])
+element at index 2,0,-1 is: 5 , 1 and 4
+b: [[1 2 3]
+ [5 4 9]]
+3
+[5 4 9]
+[[list([1, 2, 3, 4]) list([5, 6, 7, 8]) list([9, 10, 11])]
+ [list([12, 13, 14]) list([15, 16, 17]) list([18, 19, 20])]]
+8
+13
+2
+[list([1, 2, 3, 4]) list([5, 6, 7, 8]) list([9, 10, 11])]
+[12, 13, 14]      '''
+
+# one dimensional silicing 
+import numpy as np
+a=np.array([1,2,5,4,6,8,3])
+print("element of a:",a,"\nslicing of a[1:3]:",a[1:3])
+print("slicing of a[2::2]:",a[2::2])
+print("slicing of a[:4]:",a[:4])
+print("slicing of a[:]:",a[:])
+
+'''
+element of a: [1 2 5 4 6 8 3] 
+slicing of a[1:3]: [2 5]
+slicing of a[2::2]: [5 6 3]
+slicing of a[:4]: [1 2 5 4]
+slicing of a[:]: [1 2 5 4 6 8 3]  '''
+
+# two dimensional silicing 
+import numpy as np
+a=np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+print("element of a:\n",a,"\nslicing a[:,:]:\n",a[::])
+print("slicing a[1:,1:]:\n",a[1:,1:])
+print("slicing a[::,::2]:\n",a[::,::2])
+
+'''
+element of a:
+ [[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]] 
+slicing a[:,:]:
+ [[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+slicing a[1:,1:]:
+ [[ 6  7  8]
+ [10 11 12]]
+slicing a[::,::2]:
+ [[ 1  3]
+ [ 5  7]
+ [ 9 11]]   '''
+
+#three dimensional slicing 
+import numpy as np
+a=np.array([[[2,3,4],[5,6,7],[8,10,11]],[[12,13,14],[15,16,17],[18,19,20]]])
+print("element of a:\n",a,"\nslicing a[:,:]:\n",a[::])
+print("slicing a[:,:,:1]\n",a[:,:,:1])
+print("slicing a[:,1:,::2]\n",a[:,1:,::2])
+
+'''
+element of a:
+ [[[ 2  3  4]
+  [ 5  6  7]
+  [ 8 10 11]]
+
+ [[12 13 14]
+  [15 16 17]
+  [18 19 20]]] 
+slicing a[:,:]:
+ [[[ 2  3  4]
+  [ 5  6  7]
+  [ 8 10 11]]
+
+ [[12 13 14]
+  [15 16 17]
+  [18 19 20]]]
+slicing a[:,:,:1]
+ [[[ 2]
+  [ 5]
+  [ 8]]
+
+ [[12]
+  [15]
+  [18]]]
+slicing a[:,1:,::2]
+ [[[ 5  7]
+  [ 8 11]]
+
+ [[15 17]
+  [18 20]]]    '''
+
+#advanced indexing (we can same index repeatedly)
+#integer indexing
+import numpy as np
+a=np.arange(1,10)
+print("element of a:\n",a)
+index=np.array([1,4,5])
+print("indexing:",a[[1,4,5]])
+print("elements in index:",a[index])
+#2d indexing
+b=np.array([[1,2,3],[4,5,6],[7,8,9]])
+print("2d array:",b)
+print("printing row0 col2 &row2 col0 elements:")
+print(b[[0,2],[2,0]])
+print("element 4,6,8 specify index:",b[[1,1,2],[0,2,1]])
+#we can access index repeatedly
+print("repeated indexing:",a[[1,2,1,2,2,1]])
+#boolean indexing (we can get negative values from array)
+#filters elements fo specified condition
+c=np.array([[1,-2,3],[4,-5,3]])
+print("elements of c:",c)
+print("lists neg elements:",c[c<0])
+print("operation on neg:",c[c<0]*2)
+
+'''
+element of a:
+ [1 2 3 4 5 6 7 8 9]
+indexing: [2 5 6]
+elements in index: [2 5 6]
+2d array: [[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+printing row0 col2 &row2 col0 elements:
+[3 7]
+element 4,6,8 specify index: [4 6 8]
+repeated indexing: [2 3 2 3 3 2]
+elements of c: [[ 1 -2  3]
+ [ 4 -5  3]]
+lists neg elements: [-2 -5]
+operation on neg: [ -4 -10]    '''
+
+#arithmetric operation on numpy arrays
+import numpy as np
+a=np.arange(1,10)
+print("element of a:\n",a)
+print("add by scalar:",a+2) #same way *,-,/,%
+print("power scalar:",a**2)
+#arithmetric operation 2d numpy arrays
+b=np.array([[1,2,3],[4,5,6],[7,8,9]])
+print("2d array:",b)
+print("add scalar in 2d array:",b+5)
+#addition of 2 arrays
+a=np.arange(1,5)
+b=np.array([10,20,30,40])
+print("element a:",a)
+print("element b:",b)
+print("addtion of 2 matrices:",a+b)  # sub,mul etc
+#arithmetric operation on 2d array
+c=np.array([[1,-2,3],[4,-5,3]])
+d=np.array([[1,-2,3],[4,-5,3]])
+print("elements of c:\n",c)
+print("elements of d:\n",d)
+print("mul of 2d array:\n",c*d)
+print("add of 2d array:\n",c+d)
+#we can use : np.add(a,b), np.subract(a,b), np.multiply(a,b), np.divide(a,b), np.mod(a,b), np.power(a,b)
+#np.add(a,2) and np.add(a,b)
+
+'''
+element of a:
+ [1 2 3 4 5 6 7 8 9]
+add by scalar: [ 3  4  5  6  7  8  9 10 11]
+power scalar: [ 1  4  9 16 25 36 49 64 81]
+2d array: [[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+add scalar in 2d array: [[ 6  7  8]
+ [ 9 10 11]
+ [12 13 14]]
+element a: [1 2 3 4]
+element b: [10 20 30 40]
+addtion of 2 matrices: [11 22 33 44]
+elements of c:
+ [[ 1 -2  3]
+ [ 4 -5  3]]
+elements of d:
+ [[ 1 -2  3]
+ [ 4 -5  3]]
+mul of 2d array:
+ [[ 1  4  9]
+ [16 25  9]]
+add of 2d array:
+ [[  2  -4   6]
+ [  8 -10   6]]   '''
+
+#arithmetric operation on numpy arrays of different size(Broadcasting)
+#broadcasting rules:
+"""
+1.size of each dimension should be same 
+2.size of one of dimension should be one"""
+#these 2 conditions should be satisfied
+import numpy as np
+a=np.array([10,20,30])
+b=np.array([1,2,3,4])
+print("element of a and shape of a:\n",a,a.shape)
+print("element of b and shape of b:\n",b,b.shape)
+print("above we can't do arithmetric operation")
+a=np.array([[1,2],[3,4],[5,6]]) #(3,2) rows and col
+b=np.array([1,2])  #we need to take as (1,2)  conditions are satisfied 1 and 2 of broadcasting
+print("element of a and shape of a:\n",a,a.shape)
+print("element of b and shape of b:\n",b,b.shape)
+print("add a and b:\n",np.add(a,b))
+#a(3,1) and b(3,) it takes as (1,3) and does condition check it passes o/p: (3,3)
+#these rules are not applied for scalar
+
+'''
+element of a and shape of a:
+ [10 20 30] (3,)
+element of b and shape of b:
+ [1 2 3 4] (4,)
+above we can't do arithmetric operation
+element of a and shape of a:
+ [[1 2]
+ [3 4]
+ [5 6]] (3, 2)
+element of b and shape of b:
+ [1 2] (2,)
+add a and b:
+ [[2 4]
+ [4 6]
+ [6 8]]  '''
+
+#manipulation in numpy array
+#reshaping numpy array (reshape and resize functions)
+#reshape :gives shape for the array but data is same
+#numpy.reshape(array,shape,order) --> order: 'C' row wise operation,'A': col,'F' (default:C)
+#arrayname.reshape(shape,order) is same like above
+import numpy as np
+a=np.arange(10)
+print("element of a and shape of a:\n",a,a.shape)
+b=np.reshape(a,(5,2))
+print("element of b and shape of b:\n",b,b.shape)
+c=np.reshape(a,(5,2),order='F')
+print("element of c and shape of c:\n",c,c.shape)
+print("size of c:",c.size)
+#resize (chnages data of the array)
+#numpy.resize(arrayname,shape)
+a=np.arange(5)
+print("element of a and shape of a:\n",a,a.shape)
+b=np.resize(a,(3,3))  #once elements are completed it repeats
+print("element of b and shape of b:\n",b,b.shape)
+a.resize(3,2)
+print("resizing affected original array:\n",a)
+
+'''
+element of a and shape of a:
+ [0 1 2 3 4 5 6 7 8 9] (10,)
+element of b and shape of b:
+ [[0 1]
+ [2 3]
+ [4 5]
+ [6 7]
+ [8 9]] (5, 2)
+element of c and shape of c:
+ [[0 5]
+ [1 6]
+ [2 7]
+ [3 8]
+ [4 9]] (5, 2)
+size of c: 10
+element of a and shape of a:
+ [0 1 2 3 4] (5,)
+element of b and shape of b:
+ [[0 1 2]
+ [3 4 0]
+ [1 2 3]] (3, 3)
+resizing affected original array:
+ [[0 1]
+ [2 3]
+ [4 0]]    '''
+
+#flatten numpy arrays (flatten and ravel func)
+#flatten: returns copy of any dim array into single dim
+#ndarray.flatten(order)
+#ravel: returns 1d array but copy on if needed, gives only view of array
+#numpy.ravel(a,order)
+import numpy as np
+a=np.array([[[1,2,3],[3,4,5]],[[6,7,8],[9,10,11]]])
+print("element of a,shape of a:\n",a,a.shape)
+print("flattened a,shape of a:\n",a.flatten(),a.shape)
+print("flattened a colwise:\n",a.flatten(order='F'))
+print("ravel a:\n",a.ravel())
+print("flattened a,shape of a:\n",np.ravel(a)) #same like above func ravel
+
+'''
+element of a,shape of a:
+ [[[ 1  2  3]
+  [ 3  4  5]]
+
+ [[ 6  7  8]
+  [ 9 10 11]]] (2, 2, 3)
+flattened a,shape of a:
+ [ 1  2  3  3  4  5  6  7  8  9 10 11] (2, 2, 3)
+flattened a colwise:
+ [ 1  6  3  9  2  7  4 10  3  8  5 11]
+ravel a:
+ [ 1  2  3  3  4  5  6  7  8  9 10 11]
+flattened a,shape of a:
+ [ 1  2  3  3  4  5  6  7  8  9 10 11]   '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+#indexing work's for list not for set & dictionary
+fruits=['apple','orange','grapes']
+i=0
+while i<len(fruits):
+    print(fruits[i])
+    i=i+1
+'''
+apple
+orange
+grapes'''
+
+#iterators and iterable
+list=[1,3,4,'helo']
+print(iter(list))
+iterator=iter(list)
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))
+print(next(iterator)) #iteration upto len 
+
+'''<list_iterator object at 0x7fc819f3e4c0>
+1
+3
+4
+helo
+Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+StopIteration'''
+
+#iterator & iterable in for loop
+def print_each(iterable):
+    iterator=iter(iterable)
+    while True:
+	try:
+	    item=next(iterator)
+	except StopIteration:
+	    break
+	else:
+	    print(item)
+print_each([1,7,'hey'])
+'''
+1
+7
+hey
+iteration over
+iteration over
+iteration over (infinite times)'''     
+
+#generators(func returing  generator-iterator with help of yield keyword)
+#all iterator are not generator iterator
+def fib(mymax):
+    a,b=0,1
+    while True:
+	c=a+b
+	if c < mymax:
+	   print("before yield keyword")
+	   yield c #stops execution and save value , using next function we get value
+	   a=b
+	   b=c
+	else:
+	   break
+gen=fib(6)
+print(next(gen))
+'''o/p: 
+before yield keyword
+1 '''
+print(next(gen))
+'''
+before yield keyword
+1
+after yield keyword
+before yield keyword
+2 '''
+
+#regular expressions(tool for matching pattern in string) 
+str1= "my name is raksh"
+print(str1)
+print(str1.replace("raksh","shivani"))
+
+str2= "my name is raksh ame"
+print(str2)
+print(str2.replace("ame","rei"))
+
+print(str2[0:17]+str2[17:].replace("ame","eire")) #[0:n-1][n:] (end ) , [n:num] print till num
+print(str2[0:13]+str2[17:].replace("ame","eire"))
+print(str2[0:17]+str2[12:].replace("ame","eire"))
+
+'''o/p
+my name is raksh
+my name is shivani
+my name is raksh ame
+my nrei is raksh rei
+my name is raksh eire
+my name is raeire
+my name is raksh aksh eire
+'''
+
+#
+import re
+line="pet:cat it is my fav pet:dog"
+match=re.match(r"pet:\w\w\w", line)
+print(match)
+print(match.group(0))
+print(match.group(1))
+'''
+<re.Match object; span=(0, 7), match='pet:cat'>
+pet:cat
+Traceback (most recent call last):
+  File "<string>", line 6, in <module>
+IndexError: no such group
+'''
+
+line="it is my fav pet:cat"
+match=re.match(r"pet:\w\w\w", line)
+print(match)
+print(match.group(0))
+'''
+None
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+AttributeError: 'NoneType' object has no attribute 'group'
+'''
+
+#only first occurence using search 
+line="it is my pet:dog fav pet:dog"
+match=re.search(r"pet:\w\w\w", line)
+print(match)
+print(match.group(0))
+'''
+<re.Match object; span=(9, 16), match='pet:dog'>
+pet:dog '''
+
+#findall (r-raw data, \w - actually letter after match
+line="it is my pet:dog fav pet:dog"
+match=re.findall(r"pet:\w\w\w", line)
+print(match)
+'''
+['pet:dog', 'pet:dog'] '''
+
+#split 
+line="it is my pet:dog there are fav pet:dog thanks"
+match=re.split(r"pet:\w\w\w", line)
+print(match)
+# ['it is my ', ' there are fav ', ' thanks']
+
+#replace here it is sub
+line="john@gmail.com and rihaana@gmail.com"
+match=re.sub(r"@\w+", "@xyz", line)
+print(match)
+# john@xyz.com and rihaana@xyz.com

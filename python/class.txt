@@ -1,0 +1,1166 @@
+#class (object oriented programming)
+
+class person:
+   pass #empty class
+
+p=person() #object name p
+print(p)
+#o/p : <__main__.person object at 0x7f4590eb74c0>
+
+#method
+class person:
+    def display(self):  #use argument as self or object
+	print("hello") 
+person1=person()
+person1.display() #called as display(person1)
+#o/p : hello
+
+#initialise object
+class person:
+    def __init__(self,name):
+	self.name=name #instance variable=local variable(to diff we use selfi refer to current obj)
+    def display(self):
+	print("hi", self.name)
+
+person1=person("raksh")
+person1.display()	
+#o/p : hi raksh
+
+#instance variable=local variable
+class person:
+    def __init__(self,name):
+        self.name=name
+	name="john" 
+	print(name)
+    def display(self):
+        print("hi", self.name)
+
+person1=person("raksh")
+person1.display()
+'''o/p : 
+john
+hi raksh'''
+
+#fields(data belongs to class: instance &class variable)
+class student:
+     clg='xyz' #class variable
+     
+     def __init__(self,rollno,name):
+	self.rollno=rollno #intstance variable(rollno, name)
+	self.name=name
+
+     def display(self):
+	print("student name: ",self.name)
+	print("student rollno: ",self.rollno)
+	print("college name:",student.clg)
+
+student1=student("2019","rakshantha")
+student1.display()
+
+student2=student("2014","midhun")
+student2.display()  
+'''o/p:
+student name:  rakshantha
+student rollno:  2019
+college name: xyz
+student name:  midhun
+student rollno:  2014
+college name: xyz'''
+
+#avoid self using static method
+class person:
+    @staticmethod
+    def display():  #use argument as self or object
+        print("hello")
+person1=person()
+person1.display()
+#o/p : hello
+
+#inheritance, encapsulation, polymorphisms : fundamentals of oops
+#inherit propert form other class use property of exisisting class
+#base or parent class : old class, child or derived: property belong to old class and have additional methods 
+
+#single level inheritence
+class animal:
+   def eating(self):
+	print("eating")
+class dog(animal):
+   def bark(self):
+        print("bark")
+
+d=dog()
+d.bark()
+d.eating()
+'''o/p:
+eating
+bark'''
+
+#inheritance using init
+class animal:
+   def __init__(self,name):
+	self.name=name
+class dog(animal):
+   def display(self):
+        print(self.name)
+
+d=dog("soo cute")
+d.display()
+#o/p : soo cute
+
+#multi-level inheritence
+class person:
+   def display(self):
+        print("it is class person")
+class employee(person):
+   def printing(self):
+        print("it is derivered class 1")
+class coder(employee):
+   def show(self):
+        print("derivered class 2")
+
+p1=coder()
+p1.display()
+p1.printing()
+p1.show()
+'''o/p 
+it is class person
+it is derivered class 1
+derivered class 2'''
+
+#multiple ingeritence
+class land_animal:
+   def display(self):
+        print("frog is land animal")
+class water_animal:
+   def printing(self):
+        print("frog is water animal")
+class frog(land_animal,water_animal):
+   pass
+p1=frog()
+p1.display()
+p1.printing()
+'''o/p
+frog is land animal
+frog is water animal'''
+
+
+
+#
+class A:
+    def display(self):
+	print("method belongs to class A")
+class B(A):
+    pass
+
+b1=B()
+b1.display()
+#O/P: method belongs to class A
+
+#method overridding (override base class in child class)
+class A:
+    def display(self):
+        print("method belongs to class A")
+class B(A):
+    def display(slef):
+	print("method belongs to class B")
+b1=B()
+b1.display()
+#o/p: method belongs to class B
+
+#encapsulation (restrict access to variables , prevent data modification accidentally)
+#we can access variable from outside class : public method, can't be accessed outside class : private method 
+class car:
+   def __init__(self):
+        self.__update()
+   def drive(self):
+	print("driving")
+   def __update(self): #private method uses __ can't call outside class
+	print("software update")
+blackcar=car()
+blackcar.drive()
+#blackcar.__update() (error can't be called outside class)
+'''o/p
+software update
+driving'''
+
+#private variable can be modified in class
+class car:
+    __maxspeed=0
+    __name=""
+    def __init__(self):
+	self.__maxspeed=200
+	self.__name="supercar"
+    def drive(self):
+        print("driving")      
+	print(self.__maxspeed)
+    def setspeed(self,speed):
+	self.__maxspeed=speed
+	print(self.__maxspeed)
+redcar=car()
+redcar.drive()
+redcar.setspeed(100)
+'''o/p
+driving
+200
+100'''
+
+#private variable can't be modified outside the class
+class car:
+    __maxspeed=0
+    __name=""
+    def __init__(self):
+        self.__maxspeed=200
+        self.__name="supercar"
+    def drive(self):
+        print("driving")
+	print(self.__maxspeed)
+    #def setspeed(self,speed):
+     #   self.__maxspeed=speed
+redcar=car()
+redcar.drive()
+redcar.__maxspeed=100
+redcar.drive()
+'''o/p
+driving
+200
+driving
+200'''
+
+#without __init__ method also above can be done
+class car:
+    __maxspeed=300
+    __name="super"
+    #def __init__(self):
+        #self.__maxspeed=200
+        #self.__name="supercar"
+    def drive(self):
+        print("driving")
+        print(self.__maxspeed)
+    #def setspeed(self,speed):
+     #   self.__maxspeed=speed
+redcar=car()
+redcar.drive()
+redcar.__maxspeed=100
+redcar.drive()
+'''o/p
+driving
+300
+driving
+300'''
+
+#polymorphism (many forms, ability of obj to adapt code ,define action regardless of type of object) 
+class dog:
+    def sound(self):
+	print("bow bow")
+class cat:
+    def sound(self): #method
+        print("meow")
+def makesound(animaltype): #function calls method of class
+    animaltype.sound()
+
+catobj=cat()
+dogobj=dog()
+makesound(catobj)
+makesound(dogobj)
+'''o/p
+meow
+bow bow'''
+
+#
+class dog:
+    def sound(self):
+        print("bow bow")
+    def bark(self):
+        print("bark1")
+class cat:
+    def sound(self): #method
+        print("meow")
+    def bark(self): #method
+        print("bark2")
+def makesound(animaltype): #function calls method of class
+    animaltype.sound()
+    animaltype.bark()
+
+catobj=cat()
+dogobj=dog()
+makesound(catobj)
+makesound(dogobj)
+'''o/p
+meow
+bark2
+bow bow
+bark1'''
+
+#Namespace implemented as dictionary
+name is to identify object. Namespace is used to control names and reuse name in our program
+when we reuse x=5 previous value gets deleted
+hence use x,y variable
+python contains different namespaces
+built-in namespace -->
+local namespace
+global namespace 
+each module has different namespace hence names can be reused
+even if function name is same if module is different it will work
+import first
+import second
+first.function()
+second.function()
+
+#variable scope
+def f():
+    x=4
+    print(x)
+f()  --> prints x value
+print(x) --> gives nameerror since x is present inside func we can't access it outside the func
+
+#local(variable inside fun), global(defined at beg of script and can be used till end of program), built-in(contains built-in names
+#enclosed(we can see this inside nested loops) variable scope
+print("initially:",dir())
+num=10  #global variable
+def f():
+    n=20  #local(lifetime of variable is till function ends) 
+    print(n)  #global variable can be called inside the function & outside also 
+    print("inside function",dir())
+f()
+print("outside functon",dir())
+'''
+initially: ['__annotations__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__']
+20
+inside function ['n']
+outside functon ['__annotations__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'f', 'num']  '''
+
+#if we modify global variable inside function use global x and then x=x+1
+
+#enclosed scope
+y=10
+def outer():  #Enclosed scope
+    z=4  #local to outer function but nonlocal to inner loop
+    def inner():
+        x=4
+        print("x is:",x)
+        print("inside function z:",z)
+    inner()
+    print("z:",z)
+outer() 
+'''
+x is: 4
+inside function z: 4
+z: 4  '''
+
+#nonlocal enclosed scope variable can be modified 
+y=10
+def outer():  #Enclosed scope
+    z=4 #local to outer function but nonlocal to inner loop
+    print("value of z in outer:",z)
+    def inner():
+        x=4
+        nonlocal z
+        z=z+1
+        #z=z+1 -->nonlocal variable can't be modified use nonlocal 
+        print("x is:",x)
+        print("inside function z:",z)
+
+    inner()
+    print("after calling inner z value is:",z)
+outer()  
+print("after calling outer y value is:",y)  
+
+'''
+value of z in outer: 4
+x is: 4
+inside function z: 5
+after calling inner z value is: 5
+after calling outer y value is: 10   '''  
+
+LEGB --> local ,enclosed, global and built-in scope is the order it searches variable
+#nested function
+def outer():  
+    z=4 
+    print("value of z in outer:",z)
+    def inner():
+        print("inside function z:",z)
+    inner() #can't be called oustide outer func
+outer()  
+
+'''
+value of z in outer: 4
+inside function z: 4  '''
+
+#
+def f():  
+    print("hi")  
+f()
+print(f)  #prints func reference
+g=f()
+
+'''
+hi
+<function f at 0x7f1d89e75d30>
+hi  '''
+
+#outer loop variable can be used in inner loop also
+#closure : can avoid global values, data hiding 
+def outer():
+    x=5
+    def inner():
+        y=3
+        result=x+y
+        return result
+    return inner()
+a=outer()   
+print(a)
+print(a.__name__) #displays inner we get error need to check
+''' 8 '''
+
+#function as paraemter to other function
+def function1():
+    print("this is func1")
+def function2(func):
+    print("this is func2 and it calls func1")
+    func()
+function2(function1)
+
+'''
+this is func2 and it calls func1
+this is func1  '''
+
+#decortaor
+def str_upper(func):
+    def inner():
+        str1=func()
+        return str1.upper()
+    return inner
+   
+def print_str():  #decorator function
+    return "good morning" #don't give print statements
+  
+print(print_str())
+d=str_upper(print_str)
+print(d())
+#instead of above 2 lines we put @decorator function above function we need to decorate
+''' 
+good morning
+GOOD MORNING  '''
+
+#@decortaor function
+def str_upper(func):
+    def inner():
+        str1=func()
+        return str1.upper()
+    return inner
+  
+@str_upper   
+def print_str():  #decorator function
+    return "good morning" #don't give print statements
+
+print(print_str())
+
+'''   GOOD MORNING  '''
+
+#decorator is callable fun which takes a func and modify it
+#decorator should take func as parameter, add functionality to function, func need to return another func
+def div_decorator(func):
+    def inner(x,y):
+        if y==0:
+            return "give proper input"
+        return func(x,y) #instead of else we can use
+    return inner
+    
+@div_decorator    
+def div(a,b):
+    return a/b
+
+print(div(4,0))
+''' give proper input ''' 
+
+#multiple decorator in single func
+#decortaor
+def str_upper(func):
+    def inner():
+        str1=func()
+        return str1.upper()
+    return inner
+def str_split(func):
+    def wrapper():
+        str2=func()
+        return str2.split()
+    return wrapper
+
+@str_split
+@str_upper #ths will be used first dont specify split initially this is correct way
+def ordinary():
+    return "good morning"
+    
+print(ordinary())
+''' ['GOOD', 'MORNING']   '''
+ 
+#multiple decorator function
+#multiple decortaor
+def str_upper(func):
+    def inner():
+        return "first "+func()+" first"
+    return inner
+
+def str_split(func):
+    def wrapper():
+        return "second "+func()+" second"
+    return wrapper
+
+@str_upper
+@str_split
+def ordinary():
+    return "good morning"
+    
+print(ordinary())
+
+''' first second good morning second first '''    
+    
+#parameter in decorator function
+def outer(expr):  #decorator wth parameter should be present at outermost loop
+    def str_upper(func):  #decorator function
+        def inner():
+            return func()+expr
+        return inner
+    return str_upper
+
+@outer(" rakshantha")
+def ordinary():
+    return "good morning"
+    
+print(ordinary())
+'''  good morning rakshantha  '''
+    
+#general decorator function
+"""
+def div1(a,b):
+    return a/b
+def div2(a,b,c):
+    return a/b/c
+
+#if den is 0 then prints divide by Zero error
+print(div1(8,2))    #4.0
+print(div2(8,2,2))   #2.0  """   
+
+def div_decorator(func):
+    def inner(*args):  #can use multiple arguments here(using variable length arguments)
+        list1=[]
+        list1=args[1:]  #after first parameter if it is 0 raise Zero exception
+        for i in list1:
+            if i==0:
+                return "give proper input"
+        return func(*args) #if 2nd and 3rd parameter !=0 executes function
+    return inner
+
+@div_decorator
+def div1(a,b):
+    return a/b
+@div_decorator    
+def div2(a,b,c):
+    return a/b/c
+
+print(div1(0,8))
+print(div1(8,0))
+print(div2(8,2,0))
+
+'''
+0.0
+give proper input
+give proper input  '''
+
+#decorator hides data of original function.
+#to print original function name import functools
+import functools
+def decorator(func):
+    @functools.wraps(func)  #if we add this we get greet as o/p for print(greet.__name__)
+    def inner():
+        str1=func()
+        return str1.upper()
+    return inner
+
+@decorator
+def greet():
+    return "good morning"
+    
+print(greet())
+print(greet.__name__)
+
+'''
+GOOD MORNING
+inner   '''
+
+#till now we defined decorator function and we applied it on other function
+#we can apply decorator function in methods also
+class printing:
+    def __init__(self,name):
+        self.name=name
+    def print_name(self):
+        print("entered user name is:",self.name)
+p=printing("rakshantha")    
+p.print_name()
+
+'''   entered user name is: rakshantha  '''
+
+
+#we can apply decorator function in methods 
+#here if entered name is raksh print a msg else mention the name specified.
+#create a decorator function and apply on method named print_name
+def check_name(method):  #parameter can be any name
+    def inner(name_ref):
+        if name_ref.name == "raksh":
+            print("my name is also same")
+        else:
+            method(name_ref)
+    return inner #this must be specified else we get 'NoneType' object is not callable
+class printing:
+    def __init__(self,name):
+        self.name=name
+    @check_name    
+    def print_name(self):
+        print("entered user name is:",self.name)
+p=printing("rakshantha")    
+p.print_name()
+p=printing("raksh")
+p.print_name()
+
+'''
+entered user name is: rakshantha
+my name is also same   '''
+
+#we can define class as decorator also
+#call method : when instance ie obj is called in function form this call will execute
+class printing:
+    def __init__(self,name):
+        self.name=name
+    def __call__(self):
+        print("entered user name is:",self.name)
+p=printing("rakshantha")
+p() #object is not callable to call it we need to add spl method named call
+
+''' entered user name is: rakshantha '''
+
+#using class decorator
+class decorator:
+    def __init__(self,name):
+        self.name=name
+    def __call__(self):
+        str1=self.name()
+        return str1.upper()
+        
+@decorator
+def greet():
+    return "good morning"
+print(greet())
+'''  GOOD MORNING  '''        
+    
+#div using class decorator
+
+class check_div:
+    def __init__(self,name):
+        self.name=name
+    def __call__(self,*args,**kwargs):
+        list1=[]
+        list1=args[1:]
+        for i in list1:
+            if i == 0:
+                return "You can't divide change the input" #if we print we get none before and after o/p
+        else:
+            return self.name(*args,**kwargs)
+            
+@check_div
+def div1(a,b):
+    return a/b
+    
+@check_div
+def div2(a,b,c):
+    return a/b/c    
+
+print(div1(0,8))
+print(div1(8,0))
+print(div2(4,2,2))
+print(div2(3,0,2))
+'''
+0.0
+You can't divide change the input
+1.0
+You can't divide change the input  '''
+
+#assignment operator for copying (immutable objects only)
+#mutable objects like list,set,dict we go for shallow and deep copy
+#if we need to change a data and need to modify also 
+"""x=4
+y=x
+x=x+1
+previous value of x is stored in y (id of x and y is same)"""
+#assignment operator won't copy data it give other name to data
+list1=[1,2,3,4]
+print("list1:",list1)
+list2=list1
+print("list2:",list2)
+list2.append(10)
+print("list 1 value is:", list1, "and list2 value is",list2)
+#if we change one list other is also affected in assignment operator
+#since both variables are referring to same value !
+print(id(list1)==id(list2))
+
+'''
+list1: [1, 2, 3, 4]
+list2: [1, 2, 3, 4]
+list 1 value is: [1, 2, 3, 4, 10] and list2 value is [1, 2, 3, 4, 10]
+True  '''
+
+#shallow copy(creates new object which stores reference of original elements)
+#bilt-in functions,slicing, list comphrension and copy module different ways
+#built-in-function
+print("built-in-function----")
+list1=[1,2,3,4]
+print("list1:",list1)
+list2=list(list1) #only change
+print("list2:",list2)
+list2.append(10)
+print("list 1 value is:", list1, "and list2 value is",list2)
+
+#slicing operator
+print("slicing method----")
+list1=[1,2,3,4]
+print("list1:",list1)
+list2=list1[:]
+print("list2:",list2)
+list2[0]="raksh"
+print("list 1 value is:", list1, "and list2 value is",list2)
+
+#list comphrension method
+print("list comphrension----")
+list1=[1,2,3,4]
+print("list1:",list1)
+list2=[x for x in list1]
+print("list2:",list2)
+list2[3]="name"
+print("list 1 value is:", list1, "and list2 value is",list2)
+
+#copy module method
+print("imorting copy module---")
+import copy
+list1=[1,2,3,4]
+print("list1:",list1)
+list2=copy.copy(list1)
+print("list2:",list2)
+list2.append("hey you!")
+print("list 1 value is:", list1, "and list2 value is",list2)
+print(id(list1) == id(list2))
+
+'''
+built-in-function----
+list1: [1, 2, 3, 4]
+list2: [1, 2, 3, 4]
+list 1 value is: [1, 2, 3, 4] and list2 value is [1, 2, 3, 4, 10]
+slicing method----
+list1: [1, 2, 3, 4]
+list2: [1, 2, 3, 4]
+list 1 value is: [1, 2, 3, 4] and list2 value is ['raksh', 2, 3, 4]
+list comphrension----
+list1: [1, 2, 3, 4]
+list2: [1, 2, 3, 4]
+list 1 value is: [1, 2, 3, 4] and list2 value is [1, 2, 3, 'name']
+imorting copy module---
+list1: [1, 2, 3, 4]
+list2: [1, 2, 3, 4]
+list 1 value is: [1, 2, 3, 4] and list2 value is [1, 2, 3, 4, 'hey you!']   
+False '''
+
+#shallow copy doesn't work for nested list
+import copy
+list1= [[1,2], 3,4]
+print("list1:",list1)
+list2=copy.copy(list1)
+print("list2:",list2)
+list2.append("a")
+print("after appending list1:",list1)
+print("after appending list2:",list2)
+list2[0][1] = "a"
+print("nested list change list1:",list1) #we see change is present in list1 also but we dont want
+print("nested list change list2:",list2) 
+
+''' 
+list1: [[1, 2], 3, 4]
+list2: [[1, 2], 3, 4]
+after appending list1: [[1, 2], 3, 4]
+after appending list2: [[1, 2], 3, 4, 'a']
+nested list change list1: [[1, 'a'], 3, 4]
+nested list change list2: [[1, 'a'], 3, 4, 'a']  '''
+
+#deep copy (creates new obj and recursively adds copies of nested object present in original elements)
+import copy
+list1= [[1,2], 3,4]
+print("list1:",list1)
+list2=copy.deepcopy(list1)
+print("list2:",list2)
+print(id(list1) == id(list2))
+list2.append("a")
+print("after appending list1:",list1)
+print("after appending list2:",list2)
+list2[0][0] = "a"
+print("nested list change list1:",list1) #we see change is present in list1 also but we dont want
+print("nested list change list2:",list2)
+
+''' 
+list1: [[1, 2], 3, 4]
+list2: [[1, 2], 3, 4]
+False
+after appending list1: [[1, 2], 3, 4]
+after appending list2: [[1, 2], 3, 4, 'a']
+nested list change list1: [[1, 2], 3, 4]
+nested list change list2: [['a', 2], 3, 4, 'a']  '''
+
+#built-in decorators: property decorator,class method, static method
+#using decorator we can change class method or attribute without affectng client side code.
+#property decorator: allows us to use class methods as attributes, getter and setter using @property
+class student:
+    def __init__(self,name,grade):
+        self.name=name
+        self.grade=grade
+        self.msg=self.name + " got grade of " +self.grade
+stud1=student("raksh","B+")  
+stud1.grade = "A"
+print("student name is :",stud1.name)
+print("grade obtained:",stud1.grade)
+print(stud1.msg) #if we change attribute of class, other attribute which are derived from that class won't update automatically
+
+'''
+student name is : raksh
+grade obtained: A
+raksh got grade of B+  '''
+
+#to avoid wrong o/p take as method instead of attribute rest all are same from previous
+class student:
+    def __init__(self,name,grade):
+        self.name=name
+        self.grade=grade
+    def msg(self):  #msg method ! to avoid wrong o/p   
+        return self.name + " got grade of " +self.grade
+stud1=student("raksh","B+")  
+stud1.grade = "A"
+print("student name is :",stud1.name)
+print("grade obtained:",stud1.grade)
+print(stud1.msg()) #inorder to avoid wrong grade here, take self.msg as method instead of attribute (msg())
+#client needs to change it as msg() if we didn't change o/p will be : <bound method student.msg of <__main__.student object at 0x7fc42eef5ee0>>
+
+'''
+student name is : raksh
+grade obtained: A
+raksh got grade of A  '''
+
+#to avoid these attribute and method confusion by client we go for property decorator
+#property decorator allow us to use method as attribute
+class student:
+    def __init__(self,name,grade):
+        self.name=name
+        self.grade=grade
+    @property    
+    def msg(self):  #msg method ! to avoid wrong o/p
+        return self.name + " got grade of " +self.grade
+stud1=student("raksh","B+")
+stud1.grade = "A"
+print("student name is :",stud1.name)
+print("grade obtained:",stud1.grade)
+print(stud1.msg)  #we don't call msg since we added @property above msg def !
+
+'''
+student name is : raksh
+grade obtained: A
+raksh got grade of A   '''
+
+#if we need to set a msg and get grade using setter attribute
+class student:
+    def __init__(self,name,grade):
+        self.name=name
+        self.grade=grade
+     
+    @property  
+    def msg(self):  #msg method ! to avoid wrong o/p
+        return self.name + " got grade of " +self.grade
+    
+    def setter(self,msg): #this is setter func to set attribute
+        sent=msg.split(" ") #returns list from msg we sent
+        print(sent)
+        self.name=sent[0]  #name is present at the beginning
+        self.grade=sent[-1]  #grade is present at the last
+        
+stud1=student("raksh","B+")
+stud1.setter("amulya got O grade") #if we want to give in below format check next program
+#stud1.msg = "amulya got O grade" --> we can't set attribute like this error occurs
+print("student name is :",stud1.name)
+print("grade obtained:",stud1.grade)
+print(stud1.msg)  #we don't call msg since we added @property above msg def !
+
+'''
+['amulya', 'got', 'O', 'grade']
+student name is : amulya
+grade obtained: grade
+amulya got grade of grade  '''
+
+#if we need to set a msg and get grade without using setter attribute
+class student:
+    def __init__(self,name,grade):
+        self.name=name
+        self.grade=grade
+     
+    @property  
+    def msg(self):  #msg method ! to avoid wrong o/p
+        return self.name + " got grade of " +self.grade
+   
+    @msg.setter
+    def msg(self,msg): #this is setter func to set attribute
+        sent=msg.split(" ") #returns list from msg we sent
+        print(sent)
+        self.name=sent[0]  #name is present at the beginning
+        self.grade=sent[-1]  #grade is present at the last
+        
+stud1=student("raksh","B+")
+stud1.msg = "amulya got grade O"  #if we need to set attribute like this,
+#change name of setter func as msg itself(method name as msg where we applied property decorator)
+#above it have @msg.setter
+print("student name is :",stud1.name)
+print("grade obtained:",stud1.grade)
+print(stud1.msg)  #we don't call msg since we added @property above msg def !
+
+'''
+['amulya', 'got', 'grade', 'O']
+student name is : amulya
+grade obtained: O
+amulya got grade of O  '''
+
+#setter and getter
+class student:
+    def __init__(self,marks):
+        self.__marks=marks
+        
+    def per(self):  
+        return (self.__marks/600)*100
+    
+    def setter(self,value):
+        self.__marks=value 
+        
+    def getter(self):
+        return self.__marks
+        
+S=student(400)
+#print(S.marks) instead of this use setter
+S.setter(500)
+#print(S.per(),"%") instead of this use getter to get value
+print(S.getter())
+"""S.marks=500 #data is not hided here ie data encapsulation is not seen(make marks as private variable: if we use __)
+print(S.marks) """
+print(S.per(),"%")
+
+'''
+500
+83.33333333333334 % '''
+
+#setter and getter
+class student:
+    def __init__(self,marks):
+        self.__marks=marks
+        
+    def per(self):  
+        return (self.__marks/600)*100
+    @property
+    def marks(self):
+        return self.__marks
+    @marks.setter    
+    def marks(self,value):
+        self.__marks=value 
+        
+S=student(400)
+S.marks=590 # we change mark hence apply property decorator there
+print(S.marks) 
+print(S.per(),"%") 
+
+'''
+590
+98.33333333333333 %  '''
+
+#check if marks if greater than 600
+class student:
+    def __init__(self,marks):
+        self.__marks=marks
+        
+    def per(self):  
+        return (self.__marks/600)*100
+    @property
+    def marks(self):
+        return self.__marks
+    @marks.setter    
+    def marks(self,value):
+        if value<0 or value>600:
+            print("stick to previous value")
+        else:    
+            self.__marks=value 
+        
+S=student(400)
+S.marks=700 #only change is if else
+print(S.marks) 
+print(S.per(),"%") 
+
+'''
+stick to previous value
+400
+66.66666666666666 %  '''
+
+#property method 
+class student:
+    def __init__(self,marks):
+        self.__marks=marks
+
+    def per(self):
+        return (self.__marks/600)*100
+   
+    def getter(self):
+        return self.__marks
+    
+    def setter(self,value):
+        if value<0 or value>600:
+            print("stick to previous value")
+        else:
+            self.__marks=value
+    marks = property(getter,setter) #add thiswe get same o/p like previous 
+S=student(400)
+S.marks=700 
+print(S.marks)
+print(S.per(),"%")
+
+'''
+stick to previous value
+400
+66.66666666666666 %
+ 
+#class method decorators
+#we have 2 tyoes of variables(instance var, class var) and 3 types of method(instance,class,static)
+#instance var are owned by instance of the class. For each obj intsnace var is different
+#class var are defined inside class but outside the method. All obj of class can use that var.
+class student:
+    clg_name ="xyz" #class variable
+    def __init__(self,name,age): #self is nothing but obj itself
+        self.name=name #instance var
+        self.age=age  #instance variable defined inside method 
+    def msg(self):  #this method is instance method(since we pass self as parameter)
+        print(self.name+" "+self.age)
+        
+print("object1:")        
+stud1=student("raksh","23")
+print("student name is :",stud1.name)
+print("Age is:",stud1.age)
+print("college name is:",stud1.clg_name) #we can access like this 
+print("using class we access clg name:",student.clg_name)
+#print(stud1.msg())  returns None
+stud1.msg()
+print("*****************")
+print("object2:")        
+stud2=student("midhun","24")  #name and age are different for different obj
+print("student name is :",stud2.name)
+print("Age is:",stud2.age)
+stud2.msg()
+
+'''
+object1:
+student name is : raksh
+Age is: 23
+college name is: xyz
+using class we access clg name: xyz
+raksh 23
+*****************
+object2:
+student name is : midhun
+Age is: 24
+midhun 24    '''
+
+#class method(we don't pass self as parameter, it holds cls ie we pass class itself)
+#to check how many objects are created from the class use class var
+class student:
+    counter=0
+    def __init__(self,name,marks): 
+        self.name=name 
+        self.marks=marks  
+        student.counter=student.counter+1
+    def msg(self):  #this method is instance method(since we pass self as parameter)
+        print(self.name+" got  "+self.marks,"%")
+    @classmethod    
+    def obj_count(cls):  
+        return cls.counter
+        
+s1=student("shivani","98")
+s2=student("shiv","90")
+s2=student("aarav","85")
+print("count of objects created is:",student.obj_count())
+print("class method using obj also we can call:",s1.obj_count())
+
+'''
+count of objects created is: 3 
+class method using obj also we can call: 3  '''
+
+#client can give input as mark we can convert it to % 
+class student:
+    def __init__(self,name,marks): 
+        self.name=name 
+        self.marks=marks  
+    def msg(self):  #this method is instance method(since we pass self as parameter)
+        print(self.name+" got "+self.marks,"%")
+   
+s1=student("shivani","98")
+marks="576"  #but if we need to create obj and do same steps we create class method for conversion shown in next program
+name="devasarshini"
+mark1=str((int(marks)/600)*100)
+s2=student(name,mark1)
+s2.msg()
+
+'''
+devasarshini got 96.0 %  '''
+
+#client can give input as mark we can convert it to % 
+class student:
+    def __init__(self,name,marks): 
+        self.name=name 
+        self.marks=marks  
+    def msg(self):  #this method is instance method(since we pass self as parameter)
+        print(self.name+" got "+self.marks,"%")
+    @classmethod    
+    def get_percent(cls,name,marks):
+        return cls(name,str((int(marks)/600)*100))
+s1=student("shivani","98")
+marks="576"  #but if we need to create obj and do same steps we create class method for conversion shown in next program
+name="devasarshini"
+#mark1=str((int(marks)/600)*100) instead of this see below changes
+s2=student.get_percent(name,marks)
+s2.msg()
+
+'''
+devasarshini got 96.0 % '''
+
+#static method decorator is similar to class method decorator(no specific parameter to be specified)
+#works like regular function but some how belongs to class
+#here we check age of student. static method knows nothing about class state.
+class student:
+    def __init__(self,name,marks): 
+        self.name=name 
+        self.marks=marks  
+    def msg(self):  #this method is instance method(since we pass self as parameter)
+        print(self.name+" got "+self.marks,"%")
+    @classmethod    
+    def get_percent(cls,name,marks):
+        return cls(name,str((int(marks)/600)*100))
+    
+    @staticmethod    
+    def get_age(age):
+        if age<17:
+            print("Belongs to school")
+        else:
+            print("Belongs to college")
+        
+s1=student("shivani","470")
+s2=student.get_percent("ria","475")
+s2.msg()
+student.get_age(21) #s1.get_age(21) both gives same o/p
+
+'''
+ria got 79.16666666666666 %
+Belongs to college  '''
+

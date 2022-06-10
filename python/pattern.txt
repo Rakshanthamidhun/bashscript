@@ -1,0 +1,823 @@
+#end
+print("hello");print("hi")
+print("hello",end=" ");print("hi") 
+'''o/p
+hello
+hi
+hello hi'''
+
+# * in right angle triangle
+num= int(input("enter no of rows: "))
+for i in range(1,num+1):
+    for j in range(1,i+1):
+	print("*",end=" ")
+    print()
+'''o/p
+enter no of rows: 5
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+'''
+
+#odd no of * in column
+num= int(input("enter no of rows: "))
+k=1
+for i in range(1,num+1):
+    for j in range(1,k+1):
+        print("*",end=" ")
+    k=k+2
+    print()
+'''o/p
+enter no of rows: 5
+* 
+* * * 
+* * * * * 
+* * * * * * * 
+* * * * * * * * *
+'''
+
+#pyramid shape
+num= int(input("enter no of rows: "))
+for i in range(0,num):
+    for j in range(0,num-i-1):  #print space
+        print(end=" ")
+    for j in range(0,i+1): #print *
+	print("a",end=" ")
+    print() 
+'''
+   a 
+  a a 
+ a a a 
+a a a a 
+'''
+
+#odd no of star in pyramid
+num= int(input("enter no of rows: "))
+for i in range(0,num):
+    for j in range(0,num-i-1):  #print space
+        print(end=" ")
+    for j in range(0,2*i+1): #print *
+        print("a",end=" ")
+    print()
+'''
+   a 
+  a a a 
+ a a a a a 
+a a a a a a a
+'''
+
+#single loop pyramid
+def pyramid(rows):
+   for i in range(rows):
+	print(' '*(rows-i-1) + '*'*(2*i+1))
+pyramid(4)
+'''
+   *
+  ***
+ *****
+*******
+'''
+#inverted pyramid shape
+num= int(input("enter no of rows: "))
+for i in range(num,0,-1):
+    for j in range(0,num-i):  #print space
+        print(end=" ")
+    for j in range(0,i): #print *
+        print("a",end=" ")
+    print()
+'''
+enter no of rows: 4
+a a a a 
+ a a a 
+  a a 
+   a 
+'''
+
+#diamond shape
+def pyramid(rows):
+    for i in range(rows):
+	print(' '*(rows-i-1)+'* '*(i+1)) #upper pyramid
+    for j in range(rows-1,0,-1):
+	print(''*(rows-j)+'* '*(j))  #lower pyramid
+pyramid(3)
+'''
+   * 
+  * * 
+ * * * 
+* * * * 
+ * * * 
+  * * 
+   * 
+'''
+#inverted right triangle
+num=int(input("Enter rows: "))
+for i in range(num,0,-1):
+    for j in range(0,i):
+	print("*",end=" ")
+    print() 
+'''
+Enter rows: 4
+* * * * 
+* * * 
+* * 
+* 
+'''
+
+#strings in right angle
+a=input("enter a string:") #raksha
+length=len(a) #rows=length   # length=6
+for row in range(0,length):   #row: 0 to 5 
+    for col in range(row+1):  #col: 1, next:2 
+	print(a[col],end="")  #a[0]=r,next:a[0}&a[1]=ra
+    print() #goes to main for loop now row: 1,next:2
+'''
+enter a string:raksha
+r
+ra
+rak
+raks
+raksh
+raksha
+'''
+ 
+#star in hollow right angle triangle
+n=int(input("No of rows:"))
+for row in range(0,n):
+    for col in range(0,n):
+	if row==0 or col==(n-1) or (row==col): #prints *
+	    print("*",end="") #for python 2 print "*",
+	else:     #prints space
+	    print(end=" ")  #for python 2 print " ",
+    print() #python 2 : print
+'''
+No of rows:5
+*****
+ *  *
+  * *
+   **
+    *
+'''
+ 
+n=int(input("No of rows:"))
+for row in range(0,n):
+    for col in range(0,n):
+        if col==0 or row==(n-1) or (row==col): #prints *
+            print("*",end="") #for python 2 print "*",
+        else:     #prints space
+            print(end=" ")  #for python 2 print " ",
+    print() #python 2 : print
+'''
+No of rows:5
+*    
+**   
+* *  
+*  * 
+***** '''
+
+#hollow equilatiral triangle
+n=int(input("No of rows:"))
+for row in range(1,n+1):
+    for col in range(1,2*n):
+        if row==n or row+col==(n+1) or col-row==(n-1): #prints *
+            print("*",end="") #for python 2 print "*",
+        else:     #prints space
+            print(end=" ")  #for python 2 print " ",
+    print() #python 2 : print
+'''
+No of rows:5
+    *    
+   * *   
+  *   *  
+ *     * 
+*********
+'''
+
+#hollow equilateral where star at last row = no of rows
+n=int(input("No of rows:"))
+k=2
+for row in range(1,n+1):
+    for col in range(1,2*n):
+        if row+col==(n+1) or col-row==(n-1): 
+            print("*",end="") 
+        elif row==n and col!=k:  #last row & not even col it prints *
+	    print("*",end="")
+	    k=k+2	
+        else:     
+            print(end=" ")  
+    print()  
+'''
+No of rows:5
+    *    
+   * *   
+  *   *  
+ *     * 
+* * * * *  '''
+
+#hollow diamond 
+for row in range(5):
+    for col in range(5):
+        if row+col==2 or col-row==2 or row-col==2 or col+row==6:
+            print("*",end="")
+        else:
+            print(end=" ")
+    print()
+'''
+  *  
+ * * 
+*   *
+ * * 
+  *  '''
+
+#print NO using * (N- 6ROW & COL, O-6ROW & COL)
+for i in range(6):  #both alphabets contains 6 rows
+   for j in range(12):  #total col
+     if ... BUT THIS METHOD IS NOT SUPPORTED FOR MANY LETTERS
+
+str="NO"
+print_N= [[" " for i in range(6)] for j in range(6)] # creates empty data of 6 row&col
+print_O= [[" " for i in range(6)] for j in range(6)]
+#code for N
+for row in range(6):
+   for col in range(6):
+       if col==0 or col==5 or col==row:
+           print_N[row][col]= "*"   #appends * in the above blanks alone 
+#code for O:
+for row in range(6):
+   for col in range(6):
+       if ((row==0 or row==5) and (col!=0 and col!=5)) or ((col==0 or col==5) and (row!=0 and row!=5)):
+           print_O[row][col]= "*"
+
+for i in range(6):   #write O after N
+   for j in range(6):
+        print(print_N[i][j],end=" ")
+   print(end="  ")
+   for j in range(6):
+        print(print_O[i][j],end=" ")
+   print()
+'''
+
+*         *     * * * *   
+* *       *   *         * 
+*   *     *   *         * 
+*     *   *   *         * 
+*       * *   *         * 
+*         *     * * * *     '''
+
+#general string print using *
+
+#right triangle using while loop
+num=int(input("enter rows:"))
+row=0 #index of first row
+while row<num:
+   star=row+1
+   while star>0:
+      print("*",end=" ")
+      star=star-1
+   row=row+1
+   print()
+'''
+   
+enter rows:
+6
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * * *  '''
+
+#pyramid using while
+num=int(input("enter rows:"))
+row=0 #index of first row
+while row<num:
+   space=num-row-1
+   while space>0:
+      print(end=" ")
+      space=space-1
+   star=row+1
+   while star>0:
+	print("*",end=" ")
+	star=star-1
+   row=row+1
+   print()
+'''
+   
+enter rows:
+6
+     * 
+    * * 
+   * * * 
+  * * * * 
+ * * * * * 
+* * * * * *   '''
+
+#print nos in right angle triangle
+n=int(input("enter rows:"))
+for i in range(1,n+1):
+  for j in range(1,i+1):
+      print(j,end=" ")
+  print()
+'''
+enter rows:
+4
+1 
+1 2 
+1 2 3 
+1 2 3 4  '''
+ 
+n=int(input("enter rows:"))
+for i in range(1,n+1):
+  for j in range(1,i+1):
+      print(i,end=" ")
+  print()
+'''
+   
+enter rows:
+5
+1 
+2 2 
+3 3 3 
+4 4 4 4 
+5 5 5 5 5 '''
+
+#numbers in inverted right angle triangle
+n=int(input("enter rows:"))
+for row in range(n,0,-1):
+  for col in range(1,row+1):
+      print(col,end=" ")
+  print()
+'''
+enter rows:
+4
+1 2 3 4 
+1 2 3 
+1 2 
+1   '''
+
+n=int(input("enter rows:"))
+for row in range(n,0,-1):
+  for col in range(1,row+1):
+      print(row,end=" ") #only diff from above
+  print()
+'''
+enter rows:
+4
+4 4 4 4 
+3 3 3 
+2 2 
+1   '''
+
+#Floyd's triangle
+n=int(input("enter rows:"))
+num=1
+for row in range(1,n+1):
+  for col in range(1,row+1):
+      print(num,end=" ") #print num,
+      num=num+1
+  print()
+'''
+enter rows:5
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15 '''
+
+#
+num=int(input("enter rows:"))
+for row in range(num):
+  val=row+1
+  dec=num-1 #difference between col2 and col1 numbers
+  for col in range(row+1):
+      print(val,end=" ") #print num,
+      val=val+dec
+      dec=dec-1
+  print()
+'''
+enter rows:5
+1 
+2 6 
+3 7 10 
+4 8 11 13 
+5 9 12 14 15 '''
+
+#format specifier to print numbers by giving space between them
+#for pyramid use double the format specifier in 2nd loop of 1st loop
+num=int(input("enter rows:"))
+for row in range(num):
+  val=row+1
+  dec=num-1 #difference between col2 and col1 numbers
+  for col in range(row+1):
+      print(format(val,"<4"),end=" ") #print num,
+      val=val+dec
+      dec=dec-1
+  print()
+'''
+enter rows:5
+1    
+2    6    
+3    7    10   
+4    8    11   13   
+5    9    12   14   15 ''' 
+
+#
+"""
+1  last:5     
+2  <5+4>    9  last:9    
+3  <5+3>    8  <9+1>     10  last:12     
+4  <5+2>    7  <9+2>     11  <12+2>    14 last:14     
+5  <5+1 >   6  <9+3>     12  <12+1>    13 <14+1>     15    
+
+last=5,9,10,14
+5= 0+5  can also be written as 0+5-0
+9= 5+4 ie 5+5-1
+12=9+3 ie 9+5-2
+14=12+2 ie 12+5-3 (last=last+n-k) here last=x
+
+col=0 x=0 0times
+col=1 x=5 1times (k=0)
+col=2 x=9 2times (k=0,1)
+
+even col value printing:
+when x=0, i(row)--> x+i-j+1= 5+4-1+1=9, 0+1+1=2
+
+
+odd col value printing:
+when x=5, i(row)--> x+n-i= 9+3-1=11
+"""
+
+n=int(input("enter rows:"))
+for i in range(n):
+    for j in range(i+1):
+      x=0  #last element of previous of initial col
+      for k in range (j):  #k iterator
+        x = x+n-k
+      if (j%2 == 0):
+        print(format(x+i-j+1,"<7"),end=" ") 
+      else:
+        print(format(x+n-i,"<7"),end=" ")
+    print()
+
+'''
+enter rows:
+5
+1       
+2       9       
+3       8       10      
+4       7       11      14      
+5       6       12      13      15   ''' 	 		
+
+#heart shape
+for row in range(6):
+    for col in range(7):
+        if (row==0 and col%3!=0) or (row==1 and col%3==0) or (row+col==8) or (row-col==2):
+             print("*",end="")
+        else:
+             print(end=" ")
+    print()
+'''
+ ** ** 
+*  *  *
+*     *
+ *   * 
+  * *  
+   *   '''
+
+#heart shape
+for i in range(4):
+    for j in range(4-i-1):  #first pyramid
+        print(" ",end="")
+    for j in range(i+1):
+        print("* ",end="")
+    for j in range(2*(4-i-1)): #second pyramid
+        print(" ",end="")
+    for j in range(i+1):
+        print("* ",end="")    
+    
+    print()
+
+for i in range(8,0,-1):  #bottom pyramid starts with 8 stars in row 
+    for j in range(8-i):
+        print(" ",end="")
+    for j in range (i,0,-1):
+        print("* ",end="")
+    print()  	
+'''
+   *       * 
+  * *     * * 
+ * * *   * * * 
+* * * * * * * * 
+* * * * * * * * 
+ * * * * * * * 
+  * * * * * * 
+   * * * * * 
+    * * * * 
+     * * * 
+      * * 
+       *    '''
+
+
+#even user input heart shape(replace above instead of 4:n , 8:num)
+#odd i/p adds extra star
+num=int(input("enter number:"))
+n=num//2
+for i in range(n):
+    for j in range(n-i-1):
+        print(" ",end="")
+    for j in range(i+1):
+        print("* ",end="")
+    for j in range(2*(n-i-1)):
+        print(" ",end="")
+    for j in range(i+1):
+        print("* ",end="")
+
+    print()
+
+for i in range(num,0,-1):
+    for j in range(num-i):
+        print(" ",end="")
+    for j in range (i,0,-1):
+        print("* ",end="")
+    print() 
+'''
+enter number:4
+ *   * 
+* * * * 
+* * * * 
+ * * * 
+  * * 
+   *   
+
+enter number:9
+   *       * 
+  * *     * * 
+ * * *   * * * 
+* * * * * * * * 
+* * * * * * * * * 
+ * * * * * * * * 
+  * * * * * * * 
+   * * * * * * 
+    * * * * * 
+     * * * * 
+      * * * 
+       * * 
+        * 
+
+'''
+
+#odd input for heart shape
+num=int(input("enter number:"))
+n=num//2
+for i in range(n):
+    for j in range(n-i-1):
+        print(" ",end="")
+    for j in range(i+1):
+        print("* ",end="")
+    if num%2==0:
+        for j in range(2*(n-i-1)): #same condition used before
+            print(" ",end="")
+    else:
+        for j in range(2*(n-i-1)+1):  # +1 at last is added
+            print(" ",end="") 
+          
+    for j in range(i+1):
+        print("* ",end="")
+
+    print()
+
+for i in range(num,0,-1):
+    for j in range(num-i):
+        print(" ",end="")
+    for j in range (i,0,-1):
+        print("* ",end="")
+    print()
+'''
+enter number:9
+   *        * 
+  * *      * * 
+ * * *    * * * 
+* * * *  * * * * 
+* * * * * * * * * 
+ * * * * * * * * 
+  * * * * * * * 
+   * * * * * * 
+    * * * * * 
+     * * * * 
+      * * * 
+       * * 
+        *    '''
+
+#name inside heart
+num=int(input("enter number:"))
+msg=input("Enter a name:")
+l=len(msg)
+n=num//2
+for i in range(n):
+    print(" "*(n-i-1) + "* "*(i+1),end=" ")
+    if num%2==0:
+        for j in range(2*(n-i-1)): #same condition used before
+            print(" ",end="")
+    else:
+        for j in range(2*(n-i-1)+1):  # +1 at last is added
+            print(" ",end="")
+
+    for j in range(i+1):
+        print("* ",end="")
+
+    print()
+
+if num%2==0:
+    #((num-l)//2) --> num : col, length: string lenth (print star)
+    if l%2==0: #before letter start, space between letters and after letter star at end
+        print("* "*((num-l)//2) + " ".join(msg) + " *"*((num-l)//2)) #num=even, length:even
+    else:
+        print("* "*((num-l)//2) + " ".join(msg) + " *"*(((num-l)//2)+1) ) #num=even, length:odd
+else:
+    if l%2==0:
+        print("* "*((num-l)//2) + " ".join(msg) + " *"*(((num-l)//2)+1) ) #num=odd, length:even
+    else:
+        print("* "*((num-l)//2) + " ".join(msg) + " *"*((num-l)//2)) #num=odd, length:odd
+
+for i in range(num,0,-1):
+    print(" "*(num-i) + "* "*(i))
+
+'''
+enter number:11
+Enter a name:midhun
+    *           * 
+   * *         * * 
+  * * *       * * * 
+ * * * *     * * * * 
+* * * * *   * * * * * 
+* * m i d h u n * * *
+* * * * * * * * * * * 
+ * * * * * * * * * * 
+  * * * * * * * * * 
+   * * * * * * * * 
+    * * * * * * * 
+     * * * * * * 
+      * * * * * 
+       * * * * 
+        * * * 
+         * * 
+          *     '''    
+
+#numbers in pyramid 
+num=int(input("Enter number of rows:"))
+for i in range(1,num+1): #no of rows
+   for j in range(1,num-i+1):  #space
+	print(end=" ")  #print(" ",end="") both are same
+   for j in range(i,0,-1):  #row value in 4th row 4321
+	print(j,end="")
+   for j in range(2,i+1):
+        print(j,end="")
+   print()
+'''
+Enter number of rows:
+5
+    1
+   212
+  32123
+ 4321234
+543212345   '''
+
+#print numbers in square (no of loops : (n+1)/2 )
+num=int(input("Enter number of rows:"))
+n_list= [[ 0 for x in range(num)] for y in range(num)]
+n=1
+low=0  #row
+high=num-1 #col
+count= int((num+1)/2)
+for i in range(count):
+   for j in range(low,high+1):  #0th row elements prints (0 to 4) [row:0 col differs]
+        n_list[i][j]=n
+        n=n+1
+   for j in range(low+1,high+1):  #4th col elements prints (1 to 4) [col:4 row differs]
+        n_list[j][high]=n
+        n=n+1
+   for j in range(high-1,low-1,-1):  #4th row elements prints (3 to 0) [row:4 col differs]
+        n_list[high][j]=n
+        n=n+1
+   for j in range(high-1,low,-1):  #4th col elements prints (3 to 1) [col:0 row differs]
+        n_list[j][low]=n
+        n=n+1
+   low=low+1    #row increases as we go for inner loop
+   high=high-1   #col decreases as we go for inner loop
+
+for i in range(num):
+   for j in range(num):
+        print(n_list[i][j],end="\t")
+   print()
+'''
+Enter number of rows:
+5
+1	2	3	4	5	
+16	17	18	19	6	
+15	24	25	20	7	
+14	23	22	21	8	
+13	12	11	10	9  '''
+
+#given 2 strings are anagram or not
+#heart and earth are same contains same char but diff pos
+#sort the string and both should be equal
+str1=input("Enter string 1:")
+str2=input("Enter string 2:")
+sorted_str1=sorted(str1)
+sorted_str2=sorted(str2)
+if len(str1) == len(str2):
+    if sorted_str1 == sorted_str2:
+        print("given strings are anagram")
+    else:
+        print("given strings are not anagram")
+else:
+    print("given strings are not anagram")  
+
+'''  
+Enter string 1:
+rent
+Enter string 2:
+tern
+given strings are anagram  '''
+
+#co-prime/relatively prime/mutually prime
+#if gcd of 2 nos is 1 it is co-prime, non-prime no can also be co-prime
+"""
+21: 1,3,7,21
+22: 1,2,11,22  here greatest common divisor is 1.
+
+4: 1,2,4
+8: 1,2,4,8 here gcd :4 """
+from math import gcd
+num1=int(input("enter num1:"))
+num2=int(input("enter num2:"))
+if gcd(num1,num2) == 1:
+    print(num1,"and",num2,"are co-prime")
+else:
+    print(num1,"and",num2,"are not co-prime")
+
+'''
+enter num1:
+21
+enter num2:
+22
+21 and 22 are co-prime '''
+
+#print all co-prime numbers of specific number
+"""
+12: 1,2,3,4,6,12
+gcd(1,12)=1
+gcd(2,12)=2
+gcd(3,12)=3
+gcd(4,12)=4
+gcd(5,12)=1
+"""
+from math import gcd
+num=int(input("enter num:"))
+lower=int(input("enter lower limit:"))
+upper=int(input("enter upper limit:"))
+print("co-prime of",num,"are:")
+for i in range(lower,upper+1):
+    if gcd(i,num) == 1:
+        print(i)
+
+'''
+enter num:
+14
+enter lower limit:
+1
+enter upper limit:
+20
+co-prime of 14 are:
+1
+3
+5
+9
+11
+13
+15
+17
+19 '''
+
+#max value in nested list
+#convert nested list to flat list first
+list2=[]  #empty flat list
+def get_max(list1):
+    for i in list1:
+        if type(i) == list:
+            get_max(i)
+        else:
+            list2.append(i)
+    return max(list2)
+    
+list1=[1,2,[4,6,[17,3],20],8]   
+print("printing given list:",list1)
+print("max value in listed list is:",get_max(list1))
+
+'''
+printing given list: [1, 2, [4, 6, [17, 3], 20], 8]
+max value in listed list is: 20  '''
+
+
+

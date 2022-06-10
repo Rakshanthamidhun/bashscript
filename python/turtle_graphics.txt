@@ -1,0 +1,277 @@
+#open turtle graphics
+import turtle
+raksh=turtle.Turtle()  #create turtle obj from turtle class
+print(raksh.shape())   #prints classic
+print(raksh.shape("turtle"))   #shape can be specified, output:None and in graphics initially >, now turtle  
+print(help(turtle.shape))     #'arrow', 'turtle', 'circle', 'square', 'triangle', 'classic'.
+print(raksh.color())    #output: ('black', 'black') --> line and turtle
+
+raksh.forward(100))  #turtle moves forward with line or fd(-120): does job of backward
+print(raksh.color("red"))  #turtle colour turns red
+print(raksh.forward(100))  #line also turns red
+print(raksh.color("blue","green")) #line:blue, turtle:green
+print(raksh.backward(100)) #backward movement of turtle or bk(50): does job of forward 
+
+#we can't set rgb color directly raksh.color(120,40,50) throws error
+#set color mode and try rbg color
+print(turtle.colormode(255))
+print(raksh.color(12,40,50))
+
+wn=turtle.Screen() #create obj for screen
+print(wn.bgcolor("purple"))  #background color
+
+print(wn.title("rakshantha"))  #title of graphics
+#background image should be in gif format
+#print(wn.bgpic("python.gif")) #shows this pic in background
+print(wn.bgpic()) #output: nopic, if present displays pic name
+
+print(raksh.setheading(90))
+print(raksh.setheading(180))
+print(raksh.setheading(270))
+print(raksh.setheading(0))
+print(raksh.left(45))   #lt 
+print(raksh.fd(250))
+print(raksh.right(80))  #rt
+print(raksh.bk(30))
+
+#open new file
+import turtle
+t=turtle.Turtle()
+t.fd(300)
+t.lt(90)
+t.fd(300)
+t.lt(90)
+t.fd(300)
+t.lt(90)
+t.fd(300)
+
+#above square shape can be drawn using for loop
+import turtle
+t=turtle.Turtle()
+for i in range(4):
+     t.fd(100)
+     t.lt(90)
+t.speed(1) #fatest:0, fast:10,normal:6, slow(3),slowest(1)
+t.lt(45)
+t.bk(90)
+t.hideturtle()  #hides turtle at the end we can do at any point
+t.fd(20)
+t.showturtle()
+
+#fill color inside square
+t.begin_fill()
+t.fillcolor("green") # if this line is not specified fills black
+for i in range(4):
+     t.fd(150)
+     t.lt(90)
+t.end_fill()  #default filling color is black
+
+#new file
+import turtle
+#circle(radius,extent: says circle or sem-circle,steps: adds polyogan based on sides)
+#extent :+angle (clockwise), -angle (anti-clockwise)
+
+t=turtle.Turtle()
+t.circle(30)
+t.circle(-40)
+t.reset()
+t.circle(100,180)
+t.reset()
+t.circle(100,steps=3)
+t.circle(150,steps=6)
+
+#till now we saw drawing from home position
+t.circle(100)
+t.undo()
+t.rt(90)
+t.fd(100)
+t.lt(90)
+t.circle(100) #we see line inside circle when turtle moves
+#to avoid the line we have
+t.reset()
+t.goto(0,-150)
+t.circle(20)
+
+t.up()
+t.goto(0,100)
+t.circle(30) #we can't see circle since turtle is up
+t.down()
+t.circle(100)
+t.reset()
+
+t.up() #penup or pu or up
+t.goto(100,100)
+t.circle(100) #we can't see circle since turtle is up
+t.down()  #pendown or pd or down
+t.circle(100)
+#a=turtle.Pen() is same like a=turtle.Turtle
+
+#new file
+import turtle
+t=turtle.Turtle()
+t.up()
+
+t.goto(0,-50)
+t.down()
+t.begin_fill()
+t.fillcolor("green")
+t.circle(50)
+t.end_fill()
+t.up()
+t.home()
+
+t.goto(200,200)
+t.down()
+t.begin_fill()
+t.fillcolor("orange")
+t.circle(50)
+t.end_fill()
+t.up()
+t.home()
+
+t.goto(-200,200)
+t.down()
+t.begin_fill()
+t.fillcolor("blue")
+t.circle(50)
+t.end_fill()
+t.up()
+t.home()
+
+t.goto(-200,-200) 
+t.down()
+t.begin_fill()
+t.fillcolor("red")
+t.circle(50) #-50 to fix space(anti-clock)
+t.end_fill()
+t.up()
+t.home()
+
+t.goto(200,-200)
+t.down()
+t.begin_fill()
+t.fillcolor("yellow")
+t.circle(50)  #-50 to fix space(anti-clock)
+t.end_fill()
+t.up()
+t.home()
+
+#above can be written in this
+def draw_circle(x,y,color,rad):
+     t.goto(x,y) 
+     t.down()
+     t.begin_fill()
+     t.fillcolor(color)
+     t.circle(rad) 
+     t.end_fill()
+     t.up()
+     t.home()
+
+import turtle
+t=turtle.Turtle()
+t.up()
+draw_circle(0,-50,"green",50)
+draw_circle(200,200,"orange",50)
+draw_circle(-200,200,"blue",50)
+draw_circle(-200,-200,"red",-50)
+draw_circle(200,-200,"yellow",-50)
+
+#consecutive circles
+import turtle
+t=turtle.Turtle()
+list=["yellow","red","blue","green"]
+t.up()
+t.goto(200,0)
+for i in range(4):
+     t.down()
+     t.begin_fill()
+     t.pensize(10) #thickness
+     t.fillcolor(list[i])
+     #t.color(list[i]) to change thickeness color instead of black
+     t.circle(50)  #increase radius for circle to overlap
+     t.end_fill()
+     t.up()
+     t.bk(100)
+
+t.reset()
+list1=["purple","red","orange","blue","green"]
+for i in range(40):
+     t.color(list1[i%5])
+     t.pensize(i/10+1)
+     t.fd(i)
+     t.lt(59)
+
+#indian flag
+import turtle
+def rectangle(color):
+     t.begin_fill()
+     t.fillcolor(color)
+     for i in range(2):
+          t.fd(300)
+          t.rt(90)
+          t.fd(100)
+          t.rt(90)
+     t.end_fill()     
+     
+t=turtle.Turtle()
+t.up()
+t.pensize(2)
+t.goto(0,-300)
+t.down()
+t.goto(0,300)
+rectangle("orange")
+
+t.goto(0,200)
+t.forward(150)
+t.color("blue")
+t.circle(-50)
+t.setheading(270)
+t.forward(50)
+t.setheading(0)
+for i in range(24):
+     t.fd(45)
+     t.bk(45)
+     t.lt(15)
+t.setheading(90)
+t.forward(50)
+t.setheading(0)
+t.color("black")
+t.forward(150)
+t.rt(90)
+t.fd(100)
+t.rt(90)
+t.fd(300)
+t.rt(90)
+t.fd(100)
+t.rt(90)
+
+t.goto(0,100)
+rectangle("green")
+
+#heart
+import turtle
+t=turtle.Turtle()
+turtle.title("Heart shape")
+screen=turtle.Screen()
+screen.bgcolor("lavender")
+t.color("red")
+t.begin_fill()
+t.fillcolor("red")
+t.left(140)
+t.fd(180)
+t.circle(-90,200)
+t.setheading(60)
+t.circle(-90,200)
+t.forward(180)
+t.end_fill()
+t.hideturtle()
+
+
+
+
+
+
+
+
+
+

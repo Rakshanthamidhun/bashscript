@@ -1,0 +1,173 @@
+#string methods (translate: replaces char in string)
+#maketrans RETURNS TABLE
+string="abcde"  #ord(a)=97
+dict={"a":"1","c":"2"}
+table=string.maketrans(dict)  #string.maketans(x,y,z) --> x alone then it must be filter 
+print(table)  #char key converted to ordinals
+b=string.translate(table)
+print(b)
+'''
+{97: '1', 99: '2'}
+1b2de '''
+
+string="abbu edge"
+str1="abcde"
+str2="12345"
+table=string.maketrans(str1,str2)  #both string must be of same length
+print(table)
+print(string.translate(table))
+'''
+{97: 49, 98: 50, 99: 51, 100: 52, 101: 53}
+122u 54g5  '''
+
+string="abb@!u ei$&dge"
+str1="abcde"
+str2="12345"
+str3="@$&!%"
+table=string.maketrans(str1,str2,str3)  #both string must be of same length
+print(table)
+print(string.translate(table))
+'''
+{97: 49, 98: 50, 99: 51, 100: 52, 101: 53, 64: None, 36: None, 38: None, 33: None, 37: None}
+122u 5i4g5  '''
+
+#lambda (function without a name)
+#map
+a=[1,2,3,4]
+def square(x):
+    return x*x
+print(map(square,a))
+print(list(map(square,a)))
+'''<map object at 0x7f370037a160>
+[1, 4, 9, 16] '''
+
+ #map using lambda
+print(list(map(lambda x:x*x,a)))
+b=[1,1,1,1]
+print(tuple(map(lambda x,y:x+y,a,b)))
+''' [1, 4, 9, 16]
+(2, 3, 4, 5)  '''
+
+#filter : returns iterable when condition is true(can be applied only for one iterable at a time)
+for x in range(1,11):
+   if(x%2==0):
+	print(x)
+'''2
+4
+6
+8
+10 '''
+
+print(filter(lambda x:x%2==0,range(1,11)))
+print(list(filter(lambda x:x%2==0,range(1,11))))
+'''<filter object at 0x7fa09ca54070>
+[2, 4, 6, 8, 10] '''
+
+#reduce
+import functools
+num=[1,2,3,4]
+print(functools.reduce(lambda x,y:x+y,num))
+''' 10 '''
+
+#list comphrension definition and syntax
+print([x for x in range(1,11)])
+''' [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] '''
+print([x for x in range(1,11) if x%2==0])
+''' [2, 4, 6, 8, 10] '''
+print([ x if x>2 else x+1 for x in range(1,11) ])
+''' [2, 3, 3, 4, 5, 6, 7, 8, 9, 10]   '''
+
+num=[1,2,3,4]
+print(5*num)
+''' [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4] '''
+
+num=[1,2,3,4]
+print([10*x for x in num])
+''' [10, 20, 30, 40] '''
+ 
+words=["Hello","i","am","finE"]
+print([x.upper() for x in words])
+''' ['HELLO', 'I', 'AM', 'FINE']  '''
+
+words="adhi123$jdj"
+print([x for x in words if x.isdigit()])
+print([x for x in words if x.isalpha()])
+'''  ['1', '2', '3']  
+['a', 'd', 'h', 'i', 'j', 'd', 'j']  '''
+
+list=[[1,2,3],[4,5,6],['a','b']]
+print([x[0] for x in list])
+''' [1, 4, 'a'] '''
+
+a=[1,2,3,4]
+b=[1,2,3,4]
+print([x+y for x in a for y in b])
+''' [2, 3, 4, 5, 3, 4, 5, 6, 4, 5, 6, 7, 5, 6, 7, 8]  '''
+
+a=[1,2,3,4]
+c=[1,2,3,4]
+print([a[i]+c[i] for i in range(0,len(a))])
+''' [2, 4, 6, 8]  '''
+
+list=[]
+for i in range(1,11):
+    list.append(i)
+print(list)
+''' [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  '''
+
+print([x for x in range(0,11)]) 
+''' [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  '''
+
+num=[2.4,2.3,2.5]
+print(list(map(lambda x:int(x),num)))
+print([int(x) for x in num ])
+'''  [2, 2, 2]  
+[2, 2, 2]   '''
+
+import timeit
+a=timeit.timeit('list(map(lambda x:int(x),[2.4,2.3,2.5]))')
+print(a)
+b=timeit.timeit('[int(x) for x in [2.4,2.3,2.5]]')
+print(b)
+'''  8.003459943996859
+6.711918458997388  '''
+
+#we can use list comphrension instead of map, for loop, reduce, filter etc 
+# __name__ : builtin returns name of the module which contains python def and statements
+print(__name__)  #__name__= __main__ is set when we run program as main program 
+''' __main__ '''  
+
+# __name__
+def mul(a,b):
+    return a*b
+print(mul(2,3))
+print(__name__)
+''' 6
+__main__  '''
+
+#in other filte
+import main.py #executes previous code
+print(main.mul(2.3,1.1))
+print(__name__)
+'''  6
+__main__
+2.53
+__main__  '''
+
+#
+def mul(a,b):
+    return a*b
+if __name__ == '__main__':    
+    print(mul(2,3))
+    print(__name__)
+''' 6
+__main__  '''
+
+
+#main file
+#above is one file , open new file
+import main.py   #doesn't give output of previous code since the current file is only with module __name__==__main__ previous is not equal
+print(main.mul(2.3,1.1))
+print(__name__)
+''' 2.53
+__main__  '''

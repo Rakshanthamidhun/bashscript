@@ -1,0 +1,1132 @@
+#selection sort (in-place selection based algo)
+'''list=[5,15,3,12,17,0]
+compares index 0 element with all index values 
+if 5 < other elements : min_value=5 in our case min_value=0 
+hence swaps 0 in index 0
+0 15 3 12 17 5  (0 sorted part from 15 unsorted part)
+
+now min_val=15 compares with other values
+0 3 15 12 17 5  (0,3 sorted part)
+
+now min_value=15 compares with other values
+0 3 5 12 17 15  (0,3,5 sorted part and swaps 15 and 5 position)
+
+now min_value=12 compares with other values
+0 3 5 12 17 15  (0,3,5,12 sorted part)
+ 
+0 3 5 12 15 17 --> final sorted array using min method'''
+
+'''list=[5,15,3,12,17,0]
+compares index 0 element with all index values
+if 5 > other elements : max_value=15 then compare with other elements we get max_value=17 so place in index 0
+17 15 3 12 5 0
+17 15 3 12 5 0
+17 15 12 3 5 0
+17 15 12 5 3 0
+17 15 12 5 3 0  '''
+
+#selection sort using min for non-duplicate values
+list1=[56,3,2,78,6,0]
+print(list1)
+min_val= min(list1)
+print(min_val) #to store min value
+min_ind=list1.index(min_val)
+print(min_ind)
+list1[0],list1[min_ind] = list1[min_ind],list1[0]
+print(list1)
+
+'''
+[56, 3, 2, 78, 6, 0]
+0
+5
+[0, 3, 2, 78, 6, 56]   '''
+
+#above is for one iteration we need do for all elements
+list1=[56,3,2,78,6,0]
+print("given list",list1)
+for i in range(len(list1)):  #for i in range(len(list1)-1): this will also work since last element is single can't have comparision 
+    print("start iteration")
+    print("---------------")
+    min_val= min(list1[i:])  #if i value is 2 it strts comparing from index 2 
+    print("min value of",i,"iteration is:", min_val) #to store min value
+    min_ind=list1.index(min_val)
+    print("mindex of min value in",i,"iteration is:",min_ind)
+    list1[i],list1[min_ind] = list1[min_ind],list1[i]
+    print("sorted array for current",i,"iteration is:", list1)
+    
+print("final sorted list is:",list1)
+
+'''
+given list [56, 3, 2, 78, 6, 0]
+start iteration
+---------------
+min value of 0 iteration is: 0
+mindex of min value in 0 iteration is: 5
+sorted array for current 0 iteration is: [0, 3, 2, 78, 6, 56]
+start iteration
+---------------
+min value of 1 iteration is: 2
+mindex of min value in 1 iteration is: 2
+sorted array for current 1 iteration is: [0, 2, 3, 78, 6, 56]
+start iteration
+---------------
+min value of 2 iteration is: 3
+mindex of min value in 2 iteration is: 2
+sorted array for current 2 iteration is: [0, 2, 3, 78, 6, 56]
+start iteration
+---------------
+min value of 3 iteration is: 6
+mindex of min value in 3 iteration is: 4
+sorted array for current 3 iteration is: [0, 2, 3, 6, 78, 56]
+start iteration
+---------------
+min value of 4 iteration is: 56
+mindex of min value in 4 iteration is: 5
+sorted array for current 4 iteration is: [0, 2, 3, 6, 56, 78]
+start iteration
+---------------
+min value of 5 iteration is: 78
+mindex of min value in 5 iteration is: 5
+sorted array for current 5 iteration is: [0, 2, 3, 6, 56, 78]
+final sorted list is: [0, 2, 3, 6, 56, 78]
+'''
+
+#selection sort using max for non-duplicate numbers
+list1=[56,3,2,78,6,0]
+print("given list",list1)
+for i in range(len(list1)):
+    print("start iteration")
+    print("---------------")
+    max_val= max(list1[i:])  #if i value is 2 it strts comparing from index 2 
+    print("max value of",i,"iteration is:", max_val) #to store min value
+    max_ind=list1.index(max_val)
+    print("index of max value in",i,"iteration is:",max_ind)
+    list1[i],list1[max_ind] = list1[max_ind],list1[i]
+    print("sorted array for current",i,"iteration is:", list1)
+    
+print("final sorted list is:",list1)
+
+'''
+given list [56, 3, 2, 78, 6, 0]
+start iteration
+---------------
+max value of 0 iteration is: 78
+index of max value in 0 iteration is: 3
+sorted array for current 0 iteration is: [78, 3, 2, 56, 6, 0]
+start iteration
+---------------
+max value of 1 iteration is: 56
+index of max value in 1 iteration is: 3
+sorted array for current 1 iteration is: [78, 56, 2, 3, 6, 0]
+start iteration
+---------------
+max value of 2 iteration is: 6
+index of max value in 2 iteration is: 4
+sorted array for current 2 iteration is: [78, 56, 6, 3, 2, 0]
+start iteration
+---------------
+max value of 3 iteration is: 3
+index of max value in 3 iteration is: 3
+sorted array for current 3 iteration is: [78, 56, 6, 3, 2, 0]
+start iteration
+---------------
+max value of 4 iteration is: 2
+index of max value in 4 iteration is: 4
+sorted array for current 4 iteration is: [78, 56, 6, 3, 2, 0]
+start iteration
+---------------
+max value of 5 iteration is: 0
+index of max value in 5 iteration is: 5
+sorted array for current 5 iteration is: [78, 56, 6, 3, 2, 0]
+final sorted list is: [78, 56, 6, 3, 2, 0] '''
+
+#selction sort using max for duplicate values (same like above only change is index check it)
+list1=[56,0,2,78,2,0]
+print("given list",list1)
+for i in range(len(list1)):
+    print("start iteration")
+    print("---------------")
+    max_val= max(list1[i:]) 
+    print("max value of",i,"iteration is:", max_val) 
+    max_ind=list1.index(max_val,i)  #this addtion of i is added (for 0 element index prints only 1 earlier)
+    print("index of max value in",i,"iteration is:",max_ind)
+    list1[i],list1[max_ind] = list1[max_ind],list1[i]
+    print("sorted array for current",i,"iteration is:", list1)
+    
+print("final sorted list is:",list1)
+
+'''
+given list [56, 0, 2, 78, 2, 0]
+start iteration
+---------------
+max value of 0 iteration is: 78
+index of max value in 0 iteration is: 3
+sorted array for current 0 iteration is: [78, 0, 2, 56, 2, 0]
+start iteration
+---------------
+max value of 1 iteration is: 56
+index of max value in 1 iteration is: 3
+sorted array for current 1 iteration is: [78, 56, 2, 0, 2, 0]
+start iteration
+---------------
+max value of 2 iteration is: 2
+index of max value in 2 iteration is: 2
+sorted array for current 2 iteration is: [78, 56, 2, 0, 2, 0]
+start iteration
+---------------
+max value of 3 iteration is: 2
+index of max value in 3 iteration is: 4
+sorted array for current 3 iteration is: [78, 56, 2, 2, 0, 0]
+start iteration
+---------------
+max value of 4 iteration is: 0
+index of max value in 4 iteration is: 4
+sorted array for current 4 iteration is: [78, 56, 2, 2, 0, 0]
+start iteration
+---------------
+max value of 5 iteration is: 0
+index of max value in 5 iteration is: 5
+sorted array for current 5 iteration is: [78, 56, 2, 2, 0, 0]
+final sorted list is: [78, 56, 2, 2, 0, 0]  '''
+
+#selction sort using min for duplicate values
+list1=[56,0,2,78,2,0]
+print("given list",list1)
+for i in range(len(list1)):
+    print("start iteration")
+    print("---------------")
+    min_val= min(list1[i:]) 
+    print("max value of",i,"iteration is:", min_val) 
+    min_ind=list1.index(min_val,i)  #this addtion of i is added (for 0 element index prints only 1 earlier)
+    print("index of min value in",i,"iteration is:",min_ind)
+    list1[i],list1[min_ind] = list1[min_ind],list1[i]
+    print("sorted array for current",i,"iteration is:", list1)
+    
+print("final sorted list is:",list1)
+
+'''
+given list [56, 0, 2, 78, 2, 0]
+start iteration
+---------------
+max value of 0 iteration is: 0
+index of min value in 0 iteration is: 1
+sorted array for current 0 iteration is: [0, 56, 2, 78, 2, 0]
+start iteration
+---------------
+max value of 1 iteration is: 0
+index of min value in 1 iteration is: 5
+sorted array for current 1 iteration is: [0, 0, 2, 78, 2, 56]
+start iteration
+---------------
+max value of 2 iteration is: 2
+index of min value in 2 iteration is: 2
+sorted array for current 2 iteration is: [0, 0, 2, 78, 2, 56]
+start iteration
+---------------
+max value of 3 iteration is: 2
+index of min value in 3 iteration is: 4
+sorted array for current 3 iteration is: [0, 0, 2, 2, 78, 56]
+start iteration
+---------------
+max value of 4 iteration is: 56
+index of min value in 4 iteration is: 5
+sorted array for current 4 iteration is: [0, 0, 2, 2, 56, 78]
+start iteration
+---------------
+max value of 5 iteration is: 78
+index of min value in 5 iteration is: 5
+sorted array for current 5 iteration is: [0, 0, 2, 2, 56, 78]
+final sorted list is: [0, 0, 2, 2, 56, 78]  '''
+
+#if condition for swap in selection sort
+#selction sort using min for duplicate values
+list1=[34,5,6,81,0,5]
+print("given list",list1)
+for i in range(len(list1)-1):
+    print("start iteration")
+    print("---------------")
+    min_val= min(list1[i:]) 
+    print("max value of",i,"iteration is:", min_val) 
+    min_ind=list1.index(min_val,i)  #this addtion of i is added (for 0 element index prints only 1 earlier)
+    print("index of min value in",i,"iteration is:",min_ind)
+    if list1[i] != list1[min_ind]:
+        list1[i],list1[min_ind] = list1[min_ind],list1[i]
+        print("not same number, swap is required")
+    print("sorted array for current",i,"iteration is:", list1)
+    
+print("final sorted list is:",list1)
+
+'''
+iven list [34, 5, 6, 81, 0, 5]
+start iteration
+---------------
+max value of 0 iteration is: 0
+index of min value in 0 iteration is: 4
+not same number, swap is required
+sorted array for current 0 iteration is: [0, 5, 6, 81, 34, 5]
+start iteration
+---------------
+max value of 1 iteration is: 5
+index of min value in 1 iteration is: 1
+sorted array for current 1 iteration is: [0, 5, 6, 81, 34, 5]
+start iteration
+---------------
+max value of 2 iteration is: 5
+index of min value in 2 iteration is: 5
+not same number, swap is required
+sorted array for current 2 iteration is: [0, 5, 5, 81, 34, 6]
+start iteration
+---------------
+max value of 3 iteration is: 6
+index of min value in 3 iteration is: 5
+not same number, swap is required
+sorted array for current 3 iteration is: [0, 5, 5, 6, 34, 81]
+start iteration
+---------------
+max value of 4 iteration is: 34
+index of min value in 4 iteration is: 4
+sorted array for current 4 iteration is: [0, 5, 5, 6, 34, 81]
+final sorted list is: [0, 5, 5, 6, 34, 81]  '''
+
+#user input for selection sort (check if condition)
+list1=[34,5,6,81,0,5]
+print("given list",list1)
+for i in range(len(list1)-1):
+    print("start iteration")
+    print("---------------")
+    min_val= list1[i]
+    for j in range(i+1,len(list1)): #since we don't compare 34 with 34 for first loop
+       if list1[j] < min_val :  #for max >
+           min_val = list1[j]
+    print("min value of",i,"iteration is:", min_val) 
+    min_ind=list1.index(min_val,i)  #this addtion of i is added (for 0 element index prints only 1 earlier)
+    print("index of min value in",i,"iteration is:",min_ind)
+    if list1[i] != list1[min_ind]:
+        list1[i],list1[min_ind] = list1[min_ind],list1[i]
+        print("not same number, swap is required")
+    print("sorted array for current",i,"iteration is:", list1)
+    
+print("final sorted list is:",list1)
+'''
+given list [34, 5, 6, 81, 0, 5]
+start iteration
+---------------
+min value of 0 iteration is: 0
+index of min value in 0 iteration is: 4
+not same number, swap is required
+sorted array for current 0 iteration is: [0, 5, 6, 81, 34, 5]
+start iteration
+---------------
+min value of 1 iteration is: 5
+index of min value in 1 iteration is: 1
+sorted array for current 1 iteration is: [0, 5, 6, 81, 34, 5]
+start iteration
+---------------
+min value of 2 iteration is: 5
+index of min value in 2 iteration is: 5
+not same number, swap is required
+sorted array for current 2 iteration is: [0, 5, 5, 81, 34, 6]
+start iteration
+---------------
+min value of 3 iteration is: 6
+index of min value in 3 iteration is: 5
+not same number, swap is required
+sorted array for current 3 iteration is: [0, 5, 5, 6, 34, 81]
+start iteration
+---------------
+min value of 4 iteration is: 34
+index of min value in 4 iteration is: 4
+sorted array for current 4 iteration is: [0, 5, 5, 6, 34, 81]
+final sorted list is: [0, 5, 5, 6, 34, 81]
+'''
+
+#selection sort without using index method
+list1=[34,5,6,81,0,5]
+print("given list",list1)
+for i in range(len(list1)-1):
+    max_ind= i
+    for j in range(i+1,len(list1)): #since we don't compare 34 with 34 for first loop
+       if list1[j] > list1[max_ind] :  #min <
+           max_ind = j
+    if list1[i] != list1[max_ind]:
+        list1[i],list1[max_ind] = list1[max_ind],list1[i]
+    
+print("final sorted list is:",list1)
+
+'''
+given list [34, 5, 6, 81, 0, 5]
+final sorted list is: [81, 34, 6, 5, 5, 0]   '''
+
+#user input selection sort
+num=int(input("how many numbers you want to enter?: "))
+list1=[int(input("enter a number:")) for x in range(num)]
+print("given list",list1)
+for i in range(len(list1)-1):
+    min_ind= i
+    for j in range(i+1,len(list1)): #since we don't compare 34 with 34 for first loop
+       if list1[j] > list1[min_ind] :
+           min_ind = j
+    if list1[i] != list1[min_ind]:
+        list1[i],list1[min_ind] = list1[min_ind],list1[i]
+    
+print("final sorted list is:",list1)
+
+'''
+how many numbers you want to enter?: 
+5
+enter a number:
+3
+enter a number:
+4
+enter a number:
+5
+enter a number:
+1
+enter a number:
+3
+given list [3, 4, 5, 1, 3]
+final sorted list is: [5, 4, 3, 3, 1]  '''
+
+
+#Bubble sort (sinking sort)
+"""  if current element is greater then swap (asc), less(dec)
+move to next number as current element and compare then swap
+
+first iteration (we get largest value at last position)
+10 15 4 23 0
+10 15 4 23 0
+10 4 15 23 0
+10 4 15 23 0
+10 4 15 0 23 
+
+second iteration
+10 4 15 0 23
+4 10 15 0 23
+4 10 15 0 23
+4 10 0 15 23
+4 10 0 15 23
+
+third iteration
+4 10 0 15 23
+4 10 0 15 23
+4 0 10 15 23
+4 0 10 15 23
+
+fourth iteration
+4 0 10 15 23
+0 4 10 15 23
+0 4 10 15 23 """
+
+#program for bubble sort (one iteration alone for understanding)
+list=[10,15,4,23,0]
+print("unsorted list:",list)
+for i in range(len(list)-1):
+    if list[i] > list[i+1]:
+        list[i],list[i+1] = list[i+1],list[i]
+    print("elements for",i,"iteration is:",list)
+print("sorted list:",list)
+
+'''
+unsorted list: [10, 15, 4, 23, 0]
+elements for 0 iteration is: [10, 15, 4, 23, 0]
+elements for 1 iteration is: [10, 4, 15, 23, 0]
+elements for 2 iteration is: [10, 4, 15, 23, 0]
+elements for 3 iteration is: [10, 4, 15, 0, 23]
+sorted list: [10, 4, 15, 0, 23]   '''
+
+#complete bubble sort
+list=[10,15,4,23,0]
+print("unsorted list:",list)
+for j in range(len(list)-1):  #no of iterations
+  print("moving for next value iteration",j)
+  print("----------------------------------")
+  for i in range(len(list)-1):  
+    if list[i] > list[i+1]:   #for dec <
+        list[i],list[i+1] = list[i+1],list[i]
+    print("elements for",i,"iteration is:",list)
+    
+print("sorted list:",list)
+
+'''
+unsorted list: [10, 15, 4, 23, 0]
+moving for next value iteration 0
+----------------------------------
+elements for 0 iteration is: [10, 15, 4, 23, 0]
+elements for 1 iteration is: [10, 4, 15, 23, 0]
+elements for 2 iteration is: [10, 4, 15, 23, 0]
+elements for 3 iteration is: [10, 4, 15, 0, 23]
+moving for next value iteration 1
+----------------------------------
+elements for 0 iteration is: [4, 10, 15, 0, 23]
+elements for 1 iteration is: [4, 10, 15, 0, 23]
+elements for 2 iteration is: [4, 10, 0, 15, 23]
+elements for 3 iteration is: [4, 10, 0, 15, 23]
+moving for next value iteration 2
+----------------------------------
+elements for 0 iteration is: [4, 10, 0, 15, 23]
+elements for 1 iteration is: [4, 0, 10, 15, 23]
+elements for 2 iteration is: [4, 0, 10, 15, 23]
+elements for 3 iteration is: [4, 0, 10, 15, 23]
+moving for next value iteration 3
+----------------------------------
+elements for 0 iteration is: [0, 4, 10, 15, 23]
+elements for 1 iteration is: [0, 4, 10, 15, 23]
+elements for 2 iteration is: [0, 4, 10, 15, 23]
+elements for 3 iteration is: [0, 4, 10, 15, 23]
+sorted list: [0, 4, 10, 15, 23]  '''
+
+#if we don't want to check sorted list in bubble sort
+list=[10,15,4,23,0]
+print("unsorted list:",list)
+for j in range(len(list)-1):  #no of iterations
+  print("moving for next value iteration",j)
+  print("----------------------------------")
+  for i in range(len(list)-1-j):  #-j is added at last only diff from prev program
+    if list[i] < list[i+1]:   #for asc >
+        list[i],list[i+1] = list[i+1],list[i]
+    print("elements for",i,"iteration is:",list)
+
+print("sorted list:",list)
+
+'''
+nsorted list: [10, 15, 4, 23, 0]
+moving for next value iteration 0
+----------------------------------
+elements for 0 iteration is: [15, 10, 4, 23, 0]
+elements for 1 iteration is: [15, 10, 4, 23, 0]
+elements for 2 iteration is: [15, 10, 23, 4, 0]
+elements for 3 iteration is: [15, 10, 23, 4, 0]
+moving for next value iteration 1
+----------------------------------
+elements for 0 iteration is: [15, 10, 23, 4, 0]
+elements for 1 iteration is: [15, 23, 10, 4, 0]
+elements for 2 iteration is: [15, 23, 10, 4, 0]
+moving for next value iteration 2
+----------------------------------
+elements for 0 iteration is: [23, 15, 10, 4, 0]
+elements for 1 iteration is: [23, 15, 10, 4, 0]
+moving for next value iteration 3
+----------------------------------
+elements for 0 iteration is: [23, 15, 10, 4, 0]
+sorted list: [23, 15, 10, 4, 0]  '''
+
+""" we can get same output of above by changing below,
+for j in range(len(list)-1,0,-1): 
+for i in range(j): """
+
+#user input bubble sort
+list=[]
+num=int(input("how many numbers you want?:"))
+print("enter values:")
+for k in range(num):
+    list.append(int(input()))
+print("unsorted list:",list)    #from this line no change from previous code
+for j in range(len(list)-1,0,-1):  #no of iterations
+  print("moving for next value iteration",j)
+  print("----------------------------------")
+  for i in range(j):
+    if list[i] > list[i+1]:   #for dec <
+        list[i],list[i+1] = list[i+1],list[i]
+    print("elements for",i,"iteration is:",list)
+
+print("sorted list:",list)
+
+'''
+how many numbers you want?:
+5
+enter values:
+4
+1
+2
+5
+2
+unsorted list: [4, 1, 2, 5, 2]
+moving for next value iteration 4
+----------------------------------
+elements for 0 iteration is: [1, 4, 2, 5, 2]
+elements for 1 iteration is: [1, 2, 4, 5, 2]
+elements for 2 iteration is: [1, 2, 4, 5, 2]
+elements for 3 iteration is: [1, 2, 4, 2, 5]
+moving for next value iteration 3
+----------------------------------
+elements for 0 iteration is: [1, 2, 4, 2, 5]
+elements for 1 iteration is: [1, 2, 4, 2, 5]
+elements for 2 iteration is: [1, 2, 2, 4, 5]
+moving for next value iteration 2
+----------------------------------
+elements for 0 iteration is: [1, 2, 2, 4, 5]
+elements for 1 iteration is: [1, 2, 2, 4, 5]
+moving for next value iteration 1
+----------------------------------
+elements for 0 iteration is: [1, 2, 2, 4, 5]
+sorted list: [1, 2, 2, 4, 5]   '''
+
+#quick sort
+"""
+pivot element can be selected randomly we usually select first or last or mid element
+after comaprision we place pivot element in some position
+
+for ascending order
+left <= right #if it fails swap pivot with right index value (if pivot is taken as first element), pivot is taken as last element then pivot=left index value 
+a[left] <= pivot #if true left will point to next index, if false goes to next right condition check
+a[right] >= pivot
+
+ 
+then divide list based on pivot element
+sort sublist recursively """
+
+def pivot_place(list1,first,last):
+    pivot=list1[first]
+    left=first+1 
+    right=last
+    while left<=right and list1[left] <= pivot:
+        left=left+1
+    while left<=right and list1[right] >= pivot:    
+        right=right-1
+    if right<left:
+        list1[first],list1[right] = list1[right],list1[first] #to swap inside list (don't use pivot directly)
+    else:
+        list1[left],list1[right] = list1[right],list1[left]
+
+
+# since we need to execute the above repeatedly, use below  (this is for pivot at first) 
+#all are applicable for duplicate elements also
+def pivot_place(list1,first,last):
+    pivot=list1[first]
+    left=first+1 
+    right=last
+    while True:
+      print("first element:",pivot)  
+      print("initial position of left",left,"and right",right)    
+      while left<=right and list1[left] <= pivot:
+        left=left+1
+      while left<=right and list1[right] >= pivot:    
+        right=right-1
+      print("position of left",left,"and right",right,"ater condition check")  
+      if right<left:
+        break
+      else:
+        list1[left],list1[right] = list1[right],list1[left]  
+    list1[first],list1[right] = list1[right],list1[first] #to swap inside list (don't use pivot directly)   
+    return right #since pivot is present at first (actual place where pivot element should be placed)
+    
+def quicksort(list1,first,last):
+    if first<last: # it is false when there is single element ie first=last
+        p=pivot_place(list1,first,last) #pivot element position after swapping right element
+        print("pivot element position is:",p)
+        print("\n---printing only output before partioning---")
+        #below is for partioning the list
+        quicksort(list1,first,p-1)  #left side of pivot element
+        quicksort(list1,p+1,last) #right side of pivot element
+        #we sort original list hence no return for this function
+        
+#main function
+list1=[54,23,45,12,3,6]
+print("original list:",list1)
+n=len(list1)
+quicksort(list1,0,n-1)
+print("sorted list:",list1)
+
+'''
+original list: [54, 23, 45, 12, 3, 6]
+first element: 54
+initial position of left 1 and right 5
+position of left 6 and right 5 ater condition check
+pivot element position is: 5
+
+---printing only output before partioning---
+first element: 6
+initial position of left 1 and right 4
+position of left 1 and right 4 ater condition check
+first element: 6
+initial position of left 1 and right 4
+position of left 2 and right 1 ater condition check
+pivot element position is: 1
+
+---printing only output before partioning---
+first element: 45
+initial position of left 3 and right 4
+position of left 5 and right 4 ater condition check
+pivot element position is: 4
+
+---printing only output before partioning---
+first element: 23
+initial position of left 3 and right 3
+position of left 4 and right 3 ater condition check
+pivot element position is: 3
+
+---printing only output before partioning---
+sorted list: [3, 6, 12, 23, 45, 54]  '''
+
+#pivot element at last quick sort
+def pivot_place(list1,first,last):
+    pivot=list1[last]
+    left=first
+    right=last-1
+    #above is changed to previous code since pivot is at last
+    while True:
+      print("first element:",pivot)  
+      print("initial position of left",left,"and right",right)    
+      while left<=right and list1[left] >= pivot: #(for desc order)
+        left=left+1
+      while left<=right and list1[right] <= pivot:   #(for desc order) 
+        right=right-1
+      print("position of left",left,"and right",right,"ater condition check")  
+      if right<left:
+        break
+      else:
+        list1[left],list1[right] = list1[right],list1[left]  
+    #below is changed to previous code        
+    list1[last],list1[left] = list1[left],list1[last] #to swap inside list (don't use pivot directly)   
+    return left #since pivot is present at last (actual place where pivot element should be placed)
+    
+def quicksort(list1,first,last):  #no changes same like prev code
+    if first<last: # it is false when there is single element ie first=last
+        p=pivot_place(list1,first,last) #pivot element position after swapping left element
+        print("pivot element position is:",p)
+        print("\n---printing only output before partioning---")
+        #below is for partioning the list
+        quicksort(list1,first,p-1)  #left side of pivot element
+        quicksort(list1,p+1,last) #right side of pivot element
+        #we sort original list hence no return for this function
+        
+#main function
+list1=[54,23,45,12,3,6]
+print("original list:",list1)
+n=len(list1)
+quicksort(list1,0,n-1)
+print("sorted list:",list1)
+
+'''
+original list: [54, 23, 45, 12, 3, 6]
+first element: 6
+initial position of left 0 and right 4
+position of left 4 and right 3 ater condition check
+pivot element position is: 4
+
+---printing only output before partioning---
+first element: 12
+initial position of left 0 and right 2
+position of left 3 and right 2 ater condition check
+pivot element position is: 3
+
+---printing only output before partioning---
+first element: 45
+initial position of left 0 and right 1
+position of left 1 and right 0 ater condition check
+pivot element position is: 1
+
+---printing only output before partioning---
+sorted list: [54, 45, 23, 12, 6, 3]  '''
+     
+#random position is selected as pivot in quick sort   
+import random
+
+def pivot_place(list1,first,last):
+    rindex=random.randint(first,last)
+    list1[rindex],list1[last] = list1[last],list1[rindex]
+    #except above all are same like previous code
+    pivot=list1[last]
+    left=first
+    right=last-1
+    #above is changed to previous code since pivot is at last
+    while True:
+      print("first element:",pivot)  
+      print("initial position of left",left,"and right",right)    
+      while left<=right and list1[left] >= pivot: #(for desc order)
+        left=left+1
+      while left<=right and list1[right] <= pivot:   #(for desc order) 
+        right=right-1
+      print("position of left",left,"and right",right,"ater condition check")  
+      if right<left:
+        break
+      else:
+        list1[left],list1[right] = list1[right],list1[left]  
+    list1[last],list1[left] = list1[left],list1[last] #to swap inside list (don't use pivot directly)   
+    return left #since pivot is present at last (actual place where pivot element should be placed)
+    
+def quicksort(list1,first,last):  #no changes same like prev code
+    if first<last: # it is false when there is single element ie first=last
+        p=pivot_place(list1,first,last) #pivot element position after swapping left element
+        print("pivot element position is:",p)
+        print("\n---printing only output before partioning---")
+        #below is for partioning the list
+        quicksort(list1,first,p-1)  #left side of pivot element
+        quicksort(list1,p+1,last) #right side of pivot element
+        #we sort original list hence no return for this function
+        
+#main function
+list1=[54,23,45,12,3,6]
+print("original list:",list1)
+n=len(list1)
+quicksort(list1,0,n-1)
+print("sorted list:",list1)
+
+'''
+original list: [54, 23, 45, 12, 3, 6]
+first element: 12
+initial position of left 0 and right 4
+position of left 3 and right 2 ater condition check
+pivot element position is: 3
+
+---printing only output before partioning---
+first element: 23
+initial position of left 0 and right 1
+position of left 2 and right 1 ater condition check
+pivot element position is: 2
+
+---printing only output before partioning---
+first element: 54
+initial position of left 0 and right 0
+position of left 0 and right -1 ater condition check
+pivot element position is: 0
+
+---printing only output before partioning---
+first element: 3
+initial position of left 4 and right 4
+position of left 5 and right 4 ater condition check
+pivot element position is: 5
+
+---printing only output before partioning---
+sorted list: [54, 45, 23, 12, 6, 3]  '''    
+
+#pivot as median index in quick sort
+import statistics
+
+def pivot_place(list1,first,last):
+    low=list1[first]
+    high=list1[last]
+    mid=(first+last)//2  #gives index
+    pvot_val=statistics.median([low,list1[mid],high])  #mid we need value hence gave as list
+    if pvot_val == low:
+        pindex=first
+    elif pvot_val == high:
+        pindex=last
+    else:
+        pindex = mid
+    list1[last],list1[pindex] = list1[pindex],list1[last] #we swapped to get pivot in last 
+    #except above all are same like previous code
+    pivot=list1[last]
+    left=first
+    right=last-1
+    #above is changed to previous code since pivot is at last
+    while True:
+      print("first element:",pivot)  
+      print("initial position of left",left,"and right",right)    
+      while left<=right and list1[left] >= pivot: #(for desc order)
+        left=left+1
+      while left<=right and list1[right] <= pivot:   #(for desc order) 
+        right=right-1
+      print("position of left",left,"and right",right,"ater condition check")  
+      if right<left:
+        break
+      else:
+        list1[left],list1[right] = list1[right],list1[left]  
+    list1[last],list1[left] = list1[left],list1[last] #to swap inside list (don't use pivot directly)   
+    return left #since pivot is present at last (actual place where pivot element should be placed)
+    
+def quicksort(list1,first,last):  #no changes same like prev code
+    if first<last: # it is false when there is single element ie first=last
+        p=pivot_place(list1,first,last) #pivot element position after swapping left element
+        print("pivot element position is:",p)
+        print("\n---printing only output before partioning---")
+        #below is for partioning the list
+        quicksort(list1,first,p-1)  #left side of pivot element
+        quicksort(list1,p+1,last) #right side of pivot element
+        #we sort original list hence no return for this function
+        
+#main function
+list1=[54,23,45,12,3,6]
+print("original list:",list1)
+n=len(list1)
+quicksort(list1,0,n-1)
+print("sorted list:",list1)
+
+'''
+original list: [54, 23, 45, 12, 3, 6]
+first element: 45
+initial position of left 0 and right 4
+position of left 1 and right 0 ater condition check
+pivot element position is: 1
+
+---printing only output before partioning---
+first element: 12
+initial position of left 2 and right 4
+position of left 2 and right 3 ater condition check
+first element: 12
+initial position of left 2 and right 3
+position of left 3 and right 2 ater condition check
+pivot element position is: 3
+
+---printing only output before partioning---
+first element: 3
+initial position of left 4 and right 4
+position of left 5 and right 4 ater condition check
+pivot element position is: 5
+
+---printing only output before partioning---
+sorted list: [54, 45, 23, 12, 6, 3]  '''    
+
+#merge sort
+""" divide list and merge the list
+divide and conquer algorithm like quick sort
+
+def mergesort(list1):
+    if len(list1)>1:  #divide list only if the len is > 1.
+        mid=len(list1)//2
+        left_list=list1[:mid]
+        right_list=list1[mid:]
+        mergesort(left_list)
+        mergesort(right_list)
+#take left list index as i and right list index as j    
+        i=0
+        j=0
+        k=0
+#above is for dividing list        
+        while i<len(left_list) and j<len(right_list): #(index of left list < lenght of left list)
+        #if the main while fails ie for left out elements
+          if left_list[i] < right_list[j]: #comapring one element with other (for desc > is only the change in code)
+              list1[k]=left_list[i]
+              i=i+1
+              k=k+1
+          else:
+              list1[k]=right_list[j]
+              j=j+1
+              k=k+1
+#above is for merging list              
+        if i<len(left_list): #to put left out elements in list
+              list1[k]=left_list[i]
+              i=i+1
+              k=k+1
+#checks if any elements are left out in left sublist              
+        if j<len(right_list):   
+              list1[k]=right_list[j]
+              j=j+1
+              k=k+1
+#above checks if any elements are left out in right sublist              
+
+num=int(input("enter numbers of elements in list:"))
+list1=[int(input("enter elements:")) for x in range(num)]
+print("given list:",list1)
+mergesort(list1)
+print("sorted list is:",list1)
+
+'''
+enter numbers of elements in list:
+5
+enter elements:
+3
+enter elements:
+1
+enter elements:
+5
+enter elements:
+3
+enter elements:
+1
+given list: [3, 1, 5, 3, 1]
+sorted list is: [1, 1, 3, 3, 5]  ''' 
+
+#insertion sort
+
+""" 10 4 25 1 5
+10>4 then swap --> 4 10 25 1 5
+10>25 no then add --> 4 10 25 1 5
+25>1 then swap --> 4 10   1 25 5
+10>1 then swap --> 4   1 10 25 5
+4>1 then swap --> 1 4 10 25 5 (least element is at beginning)
+
+1 4 10 25 > 5 --> 1 4 10  5 25
+1 4 10 > 5 25 --> 1 4   5 10 25
+1 4 > 5 10 25 --> 1 4 5 10 25  """
+
+#ascending order using insertion sort
+#take first element as sorted part rest as unsorted part
+def Insertsort(my_list):
+    for index in range(1,len(my_list)):  #for us 1 to 4
+        current_element=my_list[index] #current_element=2
+        pos=index  #pos=1 ie index of 2
+        # my_list[pos-1] is sorted part element
+	# 2 < 4 (pos-1 ie 1-1=0 index value is 4) 
+        while current_element<my_list[pos-1] and pos>0:  #current_element>my_list[pos-1] for desc other than this all are same.
+            my_list[pos]=my_list[pos-1] #moving greater element to right side
+            pos=pos-1
+        my_list[pos]=current_element #if not greater then place current value is same.
+        
+list1=[4,2,5,1,3]
+print("given list:",list1)
+Insertsort(list1)
+print("sorted list is:",list1)
+
+'''
+given list: [4, 2, 5, 1, 3]
+sorted list is: [1, 2, 3, 4, 5]  '''
+            
+#shell sort (divides bigger list into sublist and perform insertion sort)
+""" variation of insertion sort algo(works only on smaller list)     
+diminish and increment algorithm """
+
+#shell sort in ascending order
+def shellsort(alist):
+    gap=len(alist)//2
+    while gap>0:
+        for index in range(gap,len(alist)):
+            current_element=alist[index]
+            pos=index
+            #current_element>alist[pos-gap] for descending other than this no change
+            while pos>=gap and current_element<alist[pos-gap]:  #works for current_element<=alist[pos-gap] also
+                alist[pos]=alist[pos-gap]
+                pos=pos-gap
+            alist[pos]=current_element
+        gap=gap//2  #after one pass we need to reduce the gap
+        #above code is more or less dame like insertion sort buy introduced gap here.
+        
+
+num=int(input("List length:"))
+list1=[int(input("Enter elements:")) for i in range(num)]
+print("given list:",list1)
+shellsort(list1)
+print("sorted list is",list1)
+
+'''
+List length:
+5
+Enter elements:
+3
+Enter elements:
+25
+Enter elements:
+11
+Enter elements:
+55
+Enter elements:
+11
+given list: [3, 25, 11, 55, 11]
+sorted list is [3, 11, 11, 25, 55] '''
+
+#linear search to search a key
+def linear_search(list1,key):
+    for i in range(len(list1)):
+        if key==list1[i]:
+            print("key element is found")
+            break
+    else:  #(after all element is searched this will execute)
+        print("key element is not found")
+        
+num=int(input("List length:"))
+list1=[int(input("Enter elements:")) for i in range(num)]
+print("given list:",list1)
+key=int(input("Enter key to be searched:"))
+linear_search(list1,key)
+
+'''
+List length:
+5
+Enter elements:
+2
+Enter elements:
+1
+Enter elements:
+5
+Enter elements:
+1
+Enter elements:
+13
+given list: [2, 1, 5, 1, 13]
+Enter key to be searched:
+1
+key element is found  '''
+
+#linear search to print index of key(applicable for non-duplicate since prints index of first occurence only)
+def linear_search(list1,key):
+    for i in range(len(list1)):
+        if key==list1[i]:
+            print("key element is found at index",i)  #i is alone added to fetch index
+            break
+    else:  #(after all element is searched this will execute)
+        print("key element is not found")
+        
+list1=[1,5,2,1,2,3]
+print("given list:",list1)
+key=int(input("Enter key to be searched:"))
+linear_search(list1,key)
+
+'''
+given list: [1, 5, 2, 1, 2, 3]
+Enter key to be searched:
+2
+key element is found at index 2  '''
+
+#linear search to print all index of duplicate elements
+def linear_search(list1,key):
+    list2=[]
+    flag=False
+    for i in range(len(list1)):
+        if key==list1[i]:
+            flag=True
+            list2.append(i)
+            
+    if flag==True:
+        print("element is found at index:")
+        for i in list2:
+            print(i)
+    else:  #(after all element is searched this will execute)
+        print("key element is not found")
+        
+list1=[1,5,2,1,2,3]
+print("given list:",list1)
+key=int(input("Enter key to be searched:"))
+linear_search(list1,key)
+
+'''
+given list: [1, 5, 2, 1, 2, 3]
+Enter key to be searched:
+2
+element is found at index:
+2
+4    '''
+
+#binary search
+"""
+initially sort list
+   low= first element
+   high= last element
+   mid= (low+high)//2
+
+key == list[mid] #if true it doesn't go to next step
+key > list[mid]  --> low=mid+1 [ search key is present at right after mid (no need to check mid and left elements]
+key < list[mid]  --> high=mid-1
+ 
+#search if element is present in list
+def binary_search(list1,key):
+    low=0
+    high=len(list1)-1
+    Found=False
+    while low<=high and not Found:
+        mid=(low+high)//2
+        if key==list1[mid]:
+            Found=True
+        elif key>list1[mid]:
+            low=mid+1
+        else:
+            high=mid-1
+            
+    if Found==True:
+        print("element is found")
+    else:  
+        print("key element is not found")
+        
+list1=[1,5,2,1,2,3]
+print("given list:",list1)
+list1.sort()
+print("sorted list:",list1)
+key=int(input("Enter key to be searched:"))
+binary_search(list1,key)
+
+'''
+given list: [1, 5, 2, 1, 2, 3]
+sorted list: [1, 1, 2, 2, 3, 5]
+Enter key to be searched:
+1
+element is found  '''
+ 
