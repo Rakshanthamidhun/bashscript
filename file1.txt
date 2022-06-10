@@ -1,4 +1,0 @@
-read write 
-quiet please
-
-need some patience
